@@ -1,21 +1,32 @@
+// file: domain.hpp
+
 #ifndef DOMAIN_HPP
 #define DOMAIN_HPP
 
+#include <memory>		 	// for shared_ptr (use -std=c++11)
 #include "curvebase.hpp"
+
+using namespace std;
 
 class Domain {
   private:
-    Curvebase * sides[4];		// Pointers to curves of the 4 sides
+    shared_ptr<Curvebase> sides[4];	// Pointers to curves of the 4 sides
+    //Curvebase * sides[4];
     int m_, n_;				// # of grid points in x and y
     double *x_,*y_;			// Arrays for coordinates in grid
-    bool cornersOk;
+    bool cornersOk;			// Corners connected = ok
 
     double phi1(double t);		// Linear interpolation functions
     double phi2(double t);		
 
   public:
     // CONSTRUCTOR
-    Domain(Curvebase& s1, Curvebase& s2, Curvebase& s3, Curvebase& s4);
+
+    //Domain(Curvebase& s1, Curvebase& s2, Curvebase& s3, Curvebase& s4);
+    Domain(shared_ptr<Curvebase> s1, 
+	shared_ptr<Curvebase> s2, 
+	shared_ptr<Curvebase> s3, 
+	shared_ptr<Curvebase> s4);
 
     // DESTRUCTOR
     ~Domain();
@@ -23,8 +34,15 @@ class Domain {
     // FUNCTIONS
     void grid_generation(int n, int m);	// Generates the grid (x_ and y_)
     void print();			// Print points of grid to console
-    void writeFile();			// Write points to .bin-file (use matlab to view)
+    void writeFile();			// Write points to .bin-file
     bool checkCorners();		// Check if corners are connected
+
+    // new functions for pro4:
+    int xsize();
+    int ysize();
+    bool gridValid();
+    // TODO Point operator()(int i, int j);
+
 };
 
 #endif //DOMAIN_HPP

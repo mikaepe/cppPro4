@@ -1,3 +1,5 @@
+// file: domain.cpp
+
 #include <cstdio>	// for writeFile()
 #include <iostream>	
 #include <cmath>	// for fabs
@@ -10,12 +12,25 @@
  */
 
 
+using namespace std;
+
 // CONSTRUCTOR --------------------------------------------------------
-Domain::Domain(Curvebase& s1, Curvebase& s2, Curvebase& s3, Curvebase& s4) {
+//Domain::Domain(Curvebase& s1, Curvebase& s2, Curvebase& s3, Curvebase& s4) {
+Domain::Domain(shared_ptr<Curvebase> s1, 
+    shared_ptr<Curvebase> s2, 
+    shared_ptr<Curvebase> s3, 
+    shared_ptr<Curvebase> s4) {
+/*
   sides[0] = &s1;
   sides[1] = &s2;
   sides[2] = &s3;
   sides[3] = &s4;
+*/
+
+  sides[0] = s1;
+  sides[1] = s2;
+  sides[2] = s3;
+  sides[3] = s4;
 
   cornersOk = checkCorners();		// Indicator for corners connected
   if (cornersOk == false) {
@@ -142,6 +157,31 @@ void Domain::grid_generation(int n, int m) {
   delete[] yLe; 
 }
 
+// Print (for testing) the grid coordinates: Careful if n,m are large.
+void Domain::print() {	
+  if (n_ < 1 || m_ < 1) {
+    std::cout << "No grid to print" << std::endl;
+    return;
+  }
+  for (int i = 0; i < (n_+1)*(m_+1); i++) {
+    std::cout << "[" << x_[i] << "," << y_[i] << "]" << std::endl;
+  }
+}	
+
+// Write the grid to an external file to enable visualization in e.g. matlab.
+void Domain::writeFile(){
+  if (n_ < 1 || m_ < 1) {
+    std::cout << "No grid available for writeFile()" << std::endl;
+    return;
+  }
+  FILE *fp;
+  fp =fopen("outfile.bin","wb");
+  fwrite(&n_,sizeof(int),1,fp);
+  fwrite(&m_,sizeof(int),1,fp);
+  fwrite(x_,sizeof(double),(n_+1)*(m_+1),fp);
+  fwrite(y_,sizeof(double),(n_+1)*(m_+1),fp);
+  fclose(fp);
+}
 
 // Function to check if the boundaries are connected (corners)
 bool Domain::checkCorners() {
@@ -168,31 +208,29 @@ bool Domain::checkCorners() {
   return true;
 }
 
+// new functions for pro4:
 
-
-// Print (for testing) the grid coordinates: Careful if n,m are large.
-void Domain::print() {	
-  if (n_ < 1 || m_ < 1) {
-    std::cout << "No grid to print" << std::endl;
-    return;
-  }
-  for (int i = 0; i < (n_+1)*(m_+1); i++) {
-    std::cout << "[" << x_[i] << "," << y_[i] << "]" << std::endl;
-  }
-}	
-
-// Write the grid to an external file to enable visualization in e.g. matlab.
-void Domain::writeFile(){
-  if (n_ < 1 || m_ < 1) {
-    std::cout << "No grid available for writeFile()" << std::endl;
-    return;
-  }
-  FILE *fp;
-  fp =fopen("outfile.bin","wb");
-  fwrite(&n_,sizeof(int),1,fp);
-  fwrite(&m_,sizeof(int),1,fp);
-  fwrite(x_,sizeof(double),(n_+1)*(m_+1),fp);
-  fwrite(y_,sizeof(double),(n_+1)*(m_+1),fp);
-  fclose(fp);
+int Domain::xsize()
+{
+  return n_;
 }
+
+int Domain::ysize()
+{
+  return m_;
+}
+
+bool Domain::gridValid()
+{
+  if (m_ != 0 && checkCorners()) {
+    std::cout << "grid valid!" << std::endl;
+    return true;
+  } else {
+    std::cout << "grid NOT valid!" << std::endl;
+    return false;
+  }
+}
+
+
+
 

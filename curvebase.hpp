@@ -1,3 +1,5 @@
+// file: curvebase.hpp
+
 #ifndef CURVEBASE_HPP
 #define CURVEBASE_HPP
 
