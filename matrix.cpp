@@ -16,13 +16,18 @@ using namespace std;
 
 // Constructors	-------------------------------------------
 
-Matrix::Matrix(int nn)
+Matrix::Matrix(int n_, int m_): m(m_), n(n_), a(nullptr)
 {
-  n = nn;
+  if (m*n > 0) {
+    a = new double[m*n];
+    fill(a,a+m*n,0.0);
+  }
+    /*
   (n == 0)? a = NULL : a = new double [n*n];	// ternary operator
   for (int i = 0; i < n*n; i++){
     a[i] = 0;
   }
+     */
   //cout << "matrix n-constructor:" << this;
   //cout << " n = " << n << endl;
 }
@@ -30,8 +35,9 @@ Matrix::Matrix(int nn)
 Matrix::Matrix(const Matrix &M)
 {
   n = M.n;
-  a = new double [n*n];
-  for (int i = 0; i < n*n;  i++) {
+  m = M.m;
+  a = new double [m*n];
+  for (int i = 0; i < n*m;  i++) {
     a[i] = M.a[i];
   }
   //cout << "matrix copy-constructor:" << this << endl;
@@ -48,13 +54,17 @@ Matrix::~Matrix()
 
 void Matrix::fillMatrix(double b[])
 {
-  for (int i = 0; i < n*n; i++) {
+  for (int i = 0; i < m*n; i++) {
     a[i] = b[i];
   }
 }
 
 void Matrix::identity() 
 {
+  if (n!=m) {
+    cout << "A non-square matrix can not be the identity matrix" << endl;
+    return;
+  }
   for (int i = 0; i < n*n; i++) {
     (i%n == i/n)? a[i] = 1: a[i] = 0;
   }
@@ -62,37 +72,42 @@ void Matrix::identity()
 
 void Matrix::print()
 {
-  if (n == 0) {
-    cout << "[0]" << endl;
+  if (n == 0 || m == 0) {
+    cout << "[]" << endl;
     return;
   }
   for (int i = 0; i < n; i++) {
-    for (int j = 0; j < n; j++) {
-      cout << a[i + j*n] << " ";
+    for (int j = 0; j < m; j++) {
+      cout << a[j + i*m] << " ";
     }
     cout << endl;
   }
 }
 
-int Matrix::sizeMatrix()
+int Matrix::rowSizeMatrix()
 {
   return n;
 }
 
+int Matrix::colSizeMatrix()
+{
+  return m;
+}
+
 void Matrix::randomize()
 {
-  if (n == 0) {
-    cout << "empty matrix, no randomizing done" << endl;
-    return;
+  if (n == 0 || m == 0) {
+      cout << "empty matrix, no randomizing done" << endl;
+      return;
   }
-  srand(time(0));
+  //srand(time(0)); gives the same random number every time
   for (int i = 0; i < n; i++) {
-    for (int j = 0; j < n; j++) { // TODO make single loop
+    for (int j = 0; j < m; j++) { // TODO make single loop
       a[i*n+j] = rand()%10;
     }
   }
 }
-
+/* not needed?
 double Matrix::norm()
 {
   double norm = 0, temp_sum;
@@ -108,6 +123,8 @@ double Matrix::norm()
   return norm;
 }
 
+*/
+
 // Operator overloadings	---------------------------
 
 /* Equality operator
@@ -118,8 +135,8 @@ Matrix &Matrix::operator=(const Matrix &M)
   if (this == &M) {
     return *this;
   }
-  if (n == M.n) {
-    for (int i = 0; i < n*n; i++) {
+  if (n == M.n && m == M.m) {
+    for (int i = 0; i < n*m; i++) {
       a[i] = M.a[i];
     }
   } else {
@@ -127,8 +144,9 @@ Matrix &Matrix::operator=(const Matrix &M)
       delete a;
     }
     n = M.n;
-    a = new double[n*n];
-    for (int i = 0; i < n*n; i++) {
+    m = M.m;
+    a = new double[n*m];
+    for (int i = 0; i < n*m; i++) {
       a[i] = M.a[i];
     }
   }
@@ -140,7 +158,7 @@ Matrix &Matrix::operator=(const Matrix &M)
  */
 const Matrix &Matrix::operator*=(const double d)
 {
-  for (int i = 0; i < n*n; i++) {
+  for (int i = 0; i < n*m; i++) {
     a[i] *= d;
   }
   return *this;
@@ -149,6 +167,7 @@ const Matrix &Matrix::operator*=(const double d)
 /* Matrix-Matrix  multiplication operator
  * Usage: M1 *= M2
  */
+/* Not needed in this project?
 const Matrix &Matrix::operator*=(const Matrix &M)
 {
   if (n != M.n) {
@@ -180,16 +199,17 @@ const Matrix &Matrix::operator*=(const Matrix &M)
   return *this;
 }
 
+ */
 /* Matrix addition operator
  * Usage: M1 += M2
  */
 const Matrix &Matrix::operator+=(const Matrix &M)
 {
-  if(n != M.n) {
+  if(n != M.n || m != M.m) {
     cerr << "Dimensions mismatch in sum. Exiting." << endl;
     exit(1);
   }
-  for (int i = 0; i < n*n; i++) {
+  for (int i = 0; i < n*m; i++) {
     a[i] += M.a[i];
   }
 
