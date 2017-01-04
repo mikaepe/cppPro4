@@ -19,7 +19,7 @@ using namespace std;
 Domain::Domain(shared_ptr<Curvebase> s1, 
     shared_ptr<Curvebase> s2, 
     shared_ptr<Curvebase> s3, 
-    shared_ptr<Curvebase> s4) {
+    shared_ptr<Curvebase> s4): m_(0), n_(0), x_(NULL), y_(NULL) {
 /*
   sides[0] = &s1;
   sides[1] = &s2;
@@ -37,8 +37,8 @@ Domain::Domain(shared_ptr<Curvebase> s1,
     sides[0] = sides[1] = sides[2] = sides[3] = NULL;
   }
 
-  m_ = n_ = 0;				// Number of grid points
-  x_ = y_ = NULL;			// Arrays for grid coordinates
+  //m_ = n_ = 0;				// Number of grid points
+  //x_ = y_ = NULL;			// Arrays for grid coordinates
 }
 
 // DESTRUCTOR ---------------------------------------------------------
@@ -53,13 +53,15 @@ Domain::~Domain() {
 
 // MEMBER FUNCTIONS ---------------------------------------------------
 
-// Linear interpolation functions
-double Domain::phi1(double t) { 
+// Linear interpolation functions (moved these to header file to be able to inline)
+/*
+double Domain::phi1(double t) {
   return t; 				// phi1(0) = 0, phi1(1) = 1
 }
-double Domain::phi2(double t) { 
+double Domain::phi2(double t) {
   return 1.0-t; 			// phi2(0) = 1, phi2(1) = 0
 }
+ */
 
 // Generates the grid and sets it to 
 void Domain::grid_generation(int n, int m) {
@@ -209,7 +211,7 @@ bool Domain::checkCorners() {
 }
 
 // new functions for pro4:
-
+/* Moved these to header file to be able to inline
 int Domain::xsize()
 {
   return n_;
@@ -219,7 +221,7 @@ int Domain::ysize()
 {
   return m_;
 }
-
+*/
 bool Domain::gridValid()
 {
   if (m_ != 0 && checkCorners()) {

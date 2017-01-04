@@ -16,8 +16,8 @@ class Domain {
     double *x_,*y_;			// Arrays for coordinates in grid
     bool cornersOk;			// Corners connected = ok
 
-    double phi1(double t);		// Linear interpolation functions
-    double phi2(double t);		
+    inline double phi1(double t) {return t;};		// Linear interpolation functions
+    inline double phi2(double t) {return 1.0-t;};
 
   public:
     // CONSTRUCTOR
@@ -38,8 +38,8 @@ class Domain {
     bool checkCorners();		// Check if corners are connected
 
     // new functions for pro4:
-    int xsize();
-    int ysize();
+    inline int xsize() {return m_;};
+    inline int ysize() {return n_;};
     bool gridValid();
     // TODO Point operator()(int i, int j);
 
