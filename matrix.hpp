@@ -18,17 +18,20 @@ class Matrix
     // Functions
     void fillMatrix(double b[]);
     void identity();
-    void print();
+    void print() const;
     int rowSizeMatrix();
     int colSizeMatrix();
     void randomize();
-    //double norm();
+    inline double get(int i, int j) const {
+      return a[i*m+j];			// get element from matrix
+    }
 
     // Operator overloadings
     Matrix &operator=(const Matrix &M);
     const Matrix &operator*=(const double d);
-    //const Matrix &operator*=(const Matrix &M);
     const Matrix &operator+=(const Matrix &M);
+    const Matrix operator+(const Matrix& M) const;
+    double& operator()(int i, int j) const;
 };
 
 #endif // MATRIX_HPP

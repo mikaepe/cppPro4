@@ -21,7 +21,7 @@ using namespace std;
 Domain::Domain(shared_ptr<Curvebase> s1, 
     shared_ptr<Curvebase> s2, 
     shared_ptr<Curvebase> s3, 
-    shared_ptr<Curvebase> s4): m_(0), n_(0), x_(nullptr), y_(nullptr) {
+    shared_ptr<Curvebase> s4): n_(0), m_(0), x_(nullptr), y_(nullptr) {
 /*
   sides[0] = &s1;
   sides[1] = &s2;
@@ -52,13 +52,15 @@ Domain::~Domain() {
 }
 
 
+
 Point Domain:: operator()(int i, int j) const
 {
   if (i < 0 || i > n_ || j < 0 || j > m_) {
     cout << "invalid index ij" << endl;
     exit(1);
   }
-  int ind = j+i*(n_+1);
+  cout << "ij = " << i << "," << j << endl;
+  int ind = j+i*(m_+1);
   return Point(x_[ind],y_[ind]);
 }
 

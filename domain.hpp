@@ -13,7 +13,7 @@ class Domain {
   private:
     shared_ptr<Curvebase> sides[4];	// Pointers to curves of the 4 sides
     //Curvebase * sides[4];
-    int m_, n_;				// # of grid points in x and y
+    int n_, m_;				// # of grid points in x and y
     double *x_,*y_;			// Arrays for coordinates in grid
     bool cornersOk;			// Corners connected = ok
 
@@ -46,8 +46,8 @@ class Domain {
     bool checkCorners();		// Check if corners are connected
 
     // new functions for pro4:
-    inline int xsize() {return m_;};
-    inline int ysize() {return n_;};
+    inline int xsize() {return n_;};
+    inline int ysize() {return m_;};
     bool gridValid();
     // TODO Point operator()(int i, int j);
 

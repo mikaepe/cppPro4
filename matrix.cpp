@@ -22,14 +22,6 @@ Matrix::Matrix(int n_, int m_): m(m_), n(n_), a(nullptr)
     a = new double[m*n];
     fill(a,a+m*n,0.0);
   }
-    /*
-  (n == 0)? a = NULL : a = new double [n*n];	// ternary operator
-  for (int i = 0; i < n*n; i++){
-    a[i] = 0;
-  }
-     */
-  //cout << "matrix n-constructor:" << this;
-  //cout << " n = " << n << endl;
 }
 
 Matrix::Matrix(const Matrix &M)
@@ -70,8 +62,9 @@ void Matrix::identity()
   }
 }
 
-void Matrix::print()
+void Matrix::print() const
 {
+  cout << endl;
   if (n == 0 || m == 0) {
     cout << "[]" << endl;
     return;
@@ -103,27 +96,12 @@ void Matrix::randomize()
   //srand(time(0)); gives the same random number every time
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < m; j++) { // TODO make single loop
-      a[i*n+j] = rand()%10;
+      a[i*m+j] = rand()%10;
     }
   }
-}
-/* not needed?
-double Matrix::norm()
-{
-  double norm = 0, temp_sum;
-  for (int i = 0; i < n; i++) {
-    temp_sum = 0;
-    for (int j = 1; j < n; j++){
-      temp_sum += fabs(a[i+j*n]);
-    }
-    if (temp_sum > norm) {
-      norm = temp_sum;
-    }
-  }
-  return norm;
 }
 
-*/
+
 
 // Operator overloadings	---------------------------
 
@@ -164,42 +142,6 @@ const Matrix &Matrix::operator*=(const double d)
   return *this;
 }
 
-/* Matrix-Matrix  multiplication operator
- * Usage: M1 *= M2
- */
-/* Not needed in this project?
-const Matrix &Matrix::operator*=(const Matrix &M)
-{
-  if (n != M.n) {
-    cerr << "Dimensions mismatch, exiting." << endl;
-    exit(1);
-  }
-
-  double *tmp_a = new double[n*n];
-  double tmp_entry;
-
-  //  AB[i,j] = sum_k(A[i,k]*B[k,j])
-  
-  int i = 0, j = 0;	// row and col
-  for (int ij = 0; ij < n*n; ij++) {
-    i = ij%n;		// row
-    j = ij/n;		// col
-    tmp_entry = 0;
-    for (int k = 0; k < n; k++) {
-      tmp_entry += a[i+k*n] * M.a[k + j*n];
-    }
-    tmp_a[ij] = tmp_entry;
-  }
-
-  for (int i = 0; i < n*n; i++) {
-    a[i] = tmp_a[i];
-  }
-  delete[] tmp_a;
-
-  return *this;
-}
-
- */
 /* Matrix addition operator
  * Usage: M1 += M2
  */
@@ -216,8 +158,35 @@ const Matrix &Matrix::operator+=(const Matrix &M)
   return *this;
 }
 
+/* Matrix addition operator
+ * Usage: A = B+C;
+ */
+const Matrix Matrix:: operator+(const Matrix &M) const
+{
+  if (n != M.n || m != M.m) {
+    cerr << "Dimensions mismatch in sum. Exiting" << endl;
+    exit(1);
+  }
+  Matrix A(n,m);
+  for (int i = 0; i < n*m; i++) {
+    A.a[i] = a[i]+M.a[i];
+  }
+  return A;
+}
 
 
+
+/* Matrix element access operator
+ * Usage: e = M(i,j)
+ */
+double& Matrix:: operator()(int i, int j) const
+{
+  if (i < 0 || i >= n || j < 0 || j >= m) {
+    cerr << "Bad index in matrix" << endl;
+    exit(1);
+  }
+  return a[j+i*m];
+}
 
 
 

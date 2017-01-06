@@ -20,17 +20,19 @@ Gfctn::Gfctn(const Gfctn& U)
 
 // Destructor ---------------------------------------------
 
+/*
 Gfctn::~Gfctn()
 {
   // TODO implement destructor
 }
+*/
 
 // Operator overloadings ---------------------------------	
 
 Gfctn Gfctn::operator+(const Gfctn& U) const
 {
   if (grid == U.grid) { // Defined on same grid?
-    tmp = new Gfctn(grid);
+    Gfctn tmp = Gfctn(grid);
     tmp.u = u + U.u;	// Matrix operator +()
     return tmp;
   } else {
@@ -42,10 +44,10 @@ Gfctn Gfctn::operator+(const Gfctn& U) const
 Gfctn Gfctn::operator*(const Gfctn& U) const
 {
   if (grid == U.grid) {
-    tmp = new Gfctn(grid);
-    for (int j = 0; j < grid.ysize(); j++) {
-      for (int i = 0; i < grid.xsize(); i++) {
-	tmp.u(i,j) = u(i,j)*U.u(i,j);
+    Gfctn tmp = Gfctn(grid);
+    for (int j = 0; j < grid->ysize(); j++) {
+      for (int i = 0; i < grid->xsize(); i++) {
+	tmp.u(i,j) = u.get(i,j)*U.u.get(i,j);
       }
     }
     return tmp;
@@ -54,3 +56,24 @@ Gfctn Gfctn::operator*(const Gfctn& U) const
     exit(1);
   }
 }
+
+// Member functions ---------------------------------------
+
+void Gfctn::setFunction(fctnPtr f) // TODO const??
+{
+  for(int j = 0; j <= grid->ysize(); j++) {
+    for(int i = 0; i <= grid->xsize(); i++) {
+      u(i,j) = f((*grid)(i,j));
+      //cout << (*grid)(i,j) << endl;
+    }
+  }
+}
+
+void Gfctn::print() const {
+  u.print();
+}
+
+
+
+
+

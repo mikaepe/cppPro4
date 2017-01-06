@@ -26,5 +26,19 @@ int main(){
     m4.identity();
     m4.print();
 
+    cout << "------------------" << endl;
+
+    cout << "m3 = "; m3.print();
+    cout << "m  = "; m.print();
+    cout << "m2 = "; m2.print();
+    cout << "m3 = m + m2 gives ";
+    m3 = m + m2;
+    m3.print();
+    cout << "---------------" << endl;
+    cout << "m3(0,0) = m(0,0) + m2(0,0) gives";
+    m3(0,0) = m.get(0,0) + m2.get(0,0);
+    cout << m3.get(0,0) << endl;
+
+
     return 0;
 }
