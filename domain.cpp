@@ -35,6 +35,8 @@ Domain::Domain(shared_ptr<Curvebase> s1,
   cornersOk = checkCorners();		// Indicator for corners connected
   if (cornersOk == false) {
     sides[0] = sides[1] = sides[2] = sides[3] = NULL;
+    // "Note: in c++11, instead of NULL, nullptr should be used" TODO
+    // but now we are using c++11 for shared_ptr....
   }
 
   //m_ = n_ = 0;				// Number of grid points
@@ -88,6 +90,7 @@ void Domain::grid_generation(int n, int m) {
    * 4*(n+1)+4*(m+1) calls to x(s) and y(s). If instead, one would
    * call x(s) and y(s) for each of the grid points there would be
    * 16*(n+1)*(m+1) calls. Consider memory if n,m are large.
+   * TODO comment on memory...
    */
 
   double *xLo,*xRi,*xTo,*xLe,*yLo,*yRi,*yTo,*yLe; 

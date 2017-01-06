@@ -23,13 +23,18 @@ class Domain {
     // CONSTRUCTOR
 
     //Domain(Curvebase& s1, Curvebase& s2, Curvebase& s3, Curvebase& s4);
-    Domain(shared_ptr<Curvebase> s1, 
+    Domain(shared_ptr<Curvebase> s1,	// TODO är det här rätt?? 
 	shared_ptr<Curvebase> s2, 
 	shared_ptr<Curvebase> s3, 
 	shared_ptr<Curvebase> s4);
 
+    // TODO move constructor? do we need it?
+
     // DESTRUCTOR
     ~Domain();
+
+    // COPY-ASSIGN (?) TODO (slide 8 F_Move p.6)
+    // Domain& operator=(const Domain& D); //TODO ska man ha med "D" här?
 
     // FUNCTIONS
     void grid_generation(int n, int m);	// Generates the grid (x_ and y_)
