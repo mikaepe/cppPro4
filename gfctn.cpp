@@ -70,7 +70,8 @@ void Gfctn::setFunction(fctnPtr f) // TODO const??
 }
 
 void Gfctn::print() const {
-  u.print();
+  cout << u << endl;
+  // u.print();
 }
 
 

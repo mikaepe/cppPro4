@@ -1,8 +1,9 @@
 // file: matrix.cpp
 
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include <iomanip>	// for setprecision in operator<<
+#include <cstdlib>	// for exit()
+#include <ctime>	// for rand() and srand()
 #include <cmath>
 #include "matrix.hpp"
 
@@ -188,13 +189,27 @@ double& Matrix:: operator()(int i, int j) const
   return a[j+i*m];
 }
 
-
-
-
-
-
-
-
+/* Stream insertion operator
+ * Usage: cout << M << endl;
+ */
+ostream& operator<<(ostream& os, const Matrix& M)
+{
+  int n = M.n;
+  int m = M.m;
+  os << endl;
+  os << fixed << setprecision(2);
+  if (n <= 0 || m <= 0) {
+    os << "[]" << endl;
+    return os;
+  }
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < m; j++) {
+      os << M.a[j + i*m] << "  ";
+    }
+    os << endl;
+  }
+  return os;
+}
 
 
 // matrix.cpp

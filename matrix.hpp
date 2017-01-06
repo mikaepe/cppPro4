@@ -3,6 +3,8 @@
 #ifndef MATRIX_HPP
 #define MATRIX_HPP
 
+#include <iostream>
+
 class Matrix
 {
   private:
@@ -32,6 +34,7 @@ class Matrix
     const Matrix &operator+=(const Matrix &M);
     const Matrix operator+(const Matrix& M) const;
     double& operator()(int i, int j) const;
+    friend std::ostream& operator<<(std::ostream& os, const Matrix& M);
 };
 
 #endif // MATRIX_HPP
