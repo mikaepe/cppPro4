@@ -5,6 +5,7 @@
 
 #include <memory>		 	// for shared_ptr (use -std=c++11)
 #include "curvebase.hpp"
+#include "point.hpp"
 
 using namespace std;
 
@@ -35,6 +36,8 @@ class Domain {
 
     // COPY-ASSIGN (?) TODO (slide 8 F_Move p.6)
     // Domain& operator=(const Domain& D); //TODO ska man ha med "D" här?
+
+    Point operator()(int i, int j) const;
 
     // FUNCTIONS
     void grid_generation(int n, int m);	// Generates the grid (x_ and y_)

@@ -3,9 +3,11 @@
 #include <cstdio>	// for writeFile()
 #include <iostream>	
 #include <cmath>	// for fabs
+#include <cstdlib>	// for exit(1)
 
 #include "domain.hpp"
-#include "curvebase.hpp"
+//#include "curvebase.hpp"
+//#include "point.hpp"
 
 /*
  * .cpp-file for class domain. See also domain.hpp.
@@ -19,7 +21,7 @@ using namespace std;
 Domain::Domain(shared_ptr<Curvebase> s1, 
     shared_ptr<Curvebase> s2, 
     shared_ptr<Curvebase> s3, 
-    shared_ptr<Curvebase> s4): m_(0), n_(0), x_(NULL), y_(NULL) {
+    shared_ptr<Curvebase> s4): m_(0), n_(0), x_(nullptr), y_(nullptr) {
 /*
   sides[0] = &s1;
   sides[1] = &s2;
@@ -34,13 +36,11 @@ Domain::Domain(shared_ptr<Curvebase> s1,
 
   cornersOk = checkCorners();		// Indicator for corners connected
   if (cornersOk == false) {
-    sides[0] = sides[1] = sides[2] = sides[3] = NULL;
+    sides[0] = sides[1] = sides[2] = sides[3] = nullptr;
     // "Note: in c++11, instead of NULL, nullptr should be used" TODO
     // but now we are using c++11 for shared_ptr....
   }
 
-  //m_ = n_ = 0;				// Number of grid points
-  //x_ = y_ = NULL;			// Arrays for grid coordinates
 }
 
 // DESTRUCTOR ---------------------------------------------------------
@@ -52,18 +52,21 @@ Domain::~Domain() {
 }
 
 
+Point Domain:: operator()(int i, int j) const
+{
+  if (i < 0 || i > n_ || j < 0 || j > m_) {
+    cout << "invalid index ij" << endl;
+    exit(1);
+  }
+  int ind = j+i*(n_+1);
+  return Point(x_[ind],y_[ind]);
+}
+
+
+
+
 
 // MEMBER FUNCTIONS ---------------------------------------------------
-
-// Linear interpolation functions (moved these to header file to be able to inline)
-/*
-double Domain::phi1(double t) {
-  return t; 				// phi1(0) = 0, phi1(1) = 1
-}
-double Domain::phi2(double t) {
-  return 1.0-t; 			// phi2(0) = 1, phi2(1) = 0
-}
- */
 
 // Generates the grid and sets it to 
 void Domain::grid_generation(int n, int m) {
