@@ -204,6 +204,9 @@ ostream& operator<<(ostream& os, const Matrix& M)
   }
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < m; j++) {
+      if (M.a[j + i*m] >= 0) {
+	os << " ";
+      }
       os << M.a[j + i*m] << "  ";
     }
     os << endl;

@@ -59,7 +59,7 @@ Point Domain:: operator()(int i, int j) const
     cout << "invalid index ij" << endl;
     exit(1);
   }
-  cout << "ij = " << i << "," << j << endl;
+  //cout << "ij = " << i << "," << j << endl; //TODO remove (was for testing)
   int ind = j+i*(m_+1);
   return Point(x_[ind],y_[ind]);
 }
