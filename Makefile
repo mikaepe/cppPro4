@@ -11,4 +11,5 @@ clean:
 	rm -f outfile.bin
 	rm -f pointMain
 	rm -f testMatrix
+	rm -f smack
 

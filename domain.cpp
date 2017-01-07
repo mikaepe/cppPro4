@@ -17,17 +17,10 @@
 using namespace std;
 
 // CONSTRUCTOR --------------------------------------------------------
-//Domain::Domain(Curvebase& s1, Curvebase& s2, Curvebase& s3, Curvebase& s4) {
 Domain::Domain(shared_ptr<Curvebase> s1, 
     shared_ptr<Curvebase> s2, 
     shared_ptr<Curvebase> s3, 
     shared_ptr<Curvebase> s4): n_(0), m_(0), x_(nullptr), y_(nullptr) {
-/*
-  sides[0] = &s1;
-  sides[1] = &s2;
-  sides[2] = &s3;
-  sides[3] = &s4;
-*/
 
   sides[0] = s1;
   sides[1] = s2;
@@ -37,8 +30,6 @@ Domain::Domain(shared_ptr<Curvebase> s1,
   cornersOk = checkCorners();		// Indicator for corners connected
   if (cornersOk == false) {
     sides[0] = sides[1] = sides[2] = sides[3] = nullptr;
-    // "Note: in c++11, instead of NULL, nullptr should be used" TODO
-    // but now we are using c++11 for shared_ptr....
   }
 
 }
@@ -94,7 +85,7 @@ void Domain::grid_generation(int n, int m) {
   /* The sides' coordinates are computed once only, i.e. there is
    * 4*(n+1)+4*(m+1) calls to x(s) and y(s). If instead, one would
    * call x(s) and y(s) for each of the grid points there would be
-   * 16*(n+1)*(m+1) calls. Consider memory if n,m are large.
+   * 16*(n+1)*(m+1) calls. Consider MEMORY if n,m are large.
    * TODO comment on memory...
    */
 
@@ -219,17 +210,7 @@ bool Domain::checkCorners() {
 }
 
 // new functions for pro4:
-/* Moved these to header file to be able to inline
-int Domain::xsize()
-{
-  return n_;
-}
 
-int Domain::ysize()
-{
-  return m_;
-}
-*/
 bool Domain::gridValid()
 {
   if (m_ != 0 && checkCorners()) {

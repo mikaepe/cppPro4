@@ -9,7 +9,14 @@
 
 
 class Curvebase {
+  private:
+    double newtonsolve(double p0, double s);
+
+    double i2Simpson(double a, double b);
+    double iSimpson(double a, double b); 
+    double dL(double t);			// integrand for arc length
   
+
   protected:
     double a;
     double b;
@@ -20,13 +27,8 @@ class Curvebase {
     virtual double yp(double p) = 0;	//parametrized by user
     virtual double dxp(double p) = 0;	//dx(p)/dp for arc length
     virtual double dyp(double p) = 0;	//dy(p)/dp for arc length
-    
-    double integrate(double a, double b);	// TODO private?
-    double newtonsolve(double p0, double s);
 
-    double i2Simpson(double a, double b);
-    double iSimpson(double a, double b); 
-    double dL(double t);			// integrand for arc length
+    double integrate(double a, double b);	// TODO private?
   
   public:
     Curvebase(); 			//default constructor

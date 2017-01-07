@@ -6,7 +6,6 @@
 #include <memory>	// for shared_ptr (use -std=c++11)
 #include "matrix.hpp"
 #include "domain.hpp"
-#include "point.hpp"
 
 // from slides "Implementation of Grid Functions"
 
