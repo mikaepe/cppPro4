@@ -36,6 +36,5 @@ class Point
     friend ostream& operator<<(ostream& os, const Point& P);
 };
 
-//ostream& operator<<(ostream& os, const Point& P);
 
 #endif		// POINT_HPP
