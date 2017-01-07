@@ -55,6 +55,14 @@ int main(int argc, char *argv[])
   cout << "2nd derivative (non const. h) " << endl;
   DDxU2.print();
 
+  Gfctn DDyU2 = U.DD0y2();
+  cout << "2nd derivative (non const. h, wrt y)" << endl;
+  DDyU2.print();
+  
+  Gfctn Laplace = U.laplace();
+  cout << "Laplace: " << endl;
+  Laplace.print();
+
   return 0; 	// Great Success
 }
   

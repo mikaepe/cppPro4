@@ -170,6 +170,41 @@ Gfctn Gfctn::DD0x2() const
 }
 
 
+/* Second derivative of u w.r.t. y.
+ */
+Gfctn Gfctn::DD0y2() const
+{
+  Gfctn tmp(grid);
+  double yp2,yp1,y,ym1,ym2;	// y_{i,j+2},y_{i,j+1},...etc
+  if (grid->gridValid()) {
+    for (int i = 0; i <= grid->xsize(); i++) {
+      for (int j = 2; j <= grid->ysize()-2; j++) {
+	yp2 = (*grid)(i,j+2).Y();
+	yp1 = (*grid)(i,j+1).Y();
+	y = (*grid)(i,j).Y();
+	ym1 = (*grid)(i,j-1).Y();
+	ym2 = (*grid)(i,j-2).Y();
+
+	tmp.u(i,j) = (1.0/(yp1-ym1))*(
+	    (u.get(i,j+2)-u.get(i,j))/(yp2 - y) - 
+	    (u.get(i,j) - u.get(i,j-2))/(y-ym2));
+      }
+    }
+  } else {
+    cout << "grid invalid in DD0x" << endl;
+  }
+  return tmp;
+}
+
+
+/* Laplacian of grid function
+ */
+Gfctn Gfctn::laplace() const
+{
+  Gfctn d2Udx2 = this->DD0x2();
+  Gfctn d2Udy2 = this->DD0y2();
+  return d2Udx2+ d2Udy2;
+}
 
 
 

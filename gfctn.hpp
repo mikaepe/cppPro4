@@ -28,12 +28,14 @@ class Gfctn
     Gfctn operator*(const Gfctn& U) const;
 
     // MEMBER FUNCTIONS
-    void setFunction(fctnPtr f);
-    void print() const;
+    void setFunction(fctnPtr f);	// set grid function values
+    void print() const;			// print grid values
     Gfctn D0x() const;			// du/dx
-    Gfctn D0y() const;			// du/dx
+    Gfctn D0y() const;			// du/dy
     Gfctn DD0x() const;			// d2u/dx2
     Gfctn DD0x2() const;		// d2u/dx2
+    Gfctn DD0y2() const;		// d2u/dy2
+    Gfctn laplace() const;		// d2u/dx2 + d2u/dy2
 
 
 // etc
