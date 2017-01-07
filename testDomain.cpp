@@ -32,22 +32,24 @@ int main(int argc, char *argv[])
   shared_ptr<xLine> c = make_shared<xLine>(-1,1,1);
   shared_ptr<yLine> d = make_shared<yLine>(0,1,-1);
 
-  Domain D = Domain(a,b,c,d);
-  D.grid_generation(10,5);
-
-  // D.print();
-  //D.writeFile();
-
-  cout << "D.xsize() = " << D.xsize() << endl;
-  cout << "D.ysize() = " << D.ysize() << endl;
-  cout << "D.gridValid() = " << D.gridValid() << endl;
 
   shared_ptr<Domain> grid = make_shared<Domain>(a,b,c,d);
   grid->grid_generation(6,3);
-  grid->gridValid();
+  cout << "x-size = " << grid->xsize() << endl;
+  cout << "y-size = " << grid->ysize() << endl;
+  grid->writeFile();
   Gfctn U = Gfctn(grid);
   U.setFunction(&f);
   U.print();
+
+  
+  Gfctn DxU = U.D0x();                
+  cout << "derivative: " << endl;
+  DxU.print();
+
+  Gfctn DDxU = U.DD0x();
+  cout << "2nd derivative: " << endl;
+  DDxU.print();
 
   return 0; 	// Great Success
 }

@@ -79,6 +79,7 @@ void Gfctn::print() const
 
 /* du/dx of grid function u
  * usage: Gfctn DxU = U.D0x();
+ * Implementation of derivative from p.13 in slide F_PDEs
  */
 Gfctn Gfctn::D0x() const
 {
@@ -99,6 +100,23 @@ Gfctn Gfctn::D0x() const
 }
 
 
+Gfctn Gfctn::DD0x() const
+{
+  Gfctn tmp(grid);
+  double h;
+  if (grid->gridValid()) {
+    // This implementation actually assumes constant grid size (constant h)
+    for (int j = 0; j <= grid->ysize(); j++) {
+      for (int i = 1; i < grid->xsize(); i++) {
+	h = 0.5*((*grid)(i+1,j).X()-(*grid)(i-1,j).X());
+	tmp.u(i,j) = (u.get(i-1,j) - 2*u.get(i,j) + u.get(i+1,j))/(h*h);
+      }
+    }
+  } else {
+    cout << "grid invalid in DD0x" << endl;
+  }
+  return tmp;
+}
 
 
 
