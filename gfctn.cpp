@@ -121,6 +121,7 @@ Gfctn Gfctn::D0y() const
   return tmp;
 }
 
+
 Gfctn Gfctn::DD0x() const
 {
   Gfctn tmp(grid);
@@ -141,6 +142,32 @@ Gfctn Gfctn::DD0x() const
 
 
 
+/* Second derivative of u w.r.t. x.
+ * Implementation from p.13-14 slide F_PDEs
+ */
+Gfctn Gfctn::DD0x2() const
+{
+  Gfctn tmp(grid);
+  double xp2,xp1,x,xm1,xm2;	// x_{i+2,j},x_{i+1,j},...etc
+  if (grid->gridValid()) {
+    for (int j = 0; j <= grid->ysize(); j++) {
+      for (int i = 2; i <= grid->xsize()-2; i++) {
+	xp2 = (*grid)(i+2,j).X();
+	xp1 = (*grid)(i+1,j).X();
+	x = (*grid)(i,j).X();
+	xm1 = (*grid)(i-1,j).X();
+	xm2 = (*grid)(i-2,j).X();
+
+	tmp.u(i,j) = (1.0/(xp1-xm1))*(
+	    (u.get(i+2,j)-u.get(i,j))/(xp2 - x) - 
+	    (u.get(i,j) - u.get(i-2,j))/(x-xm2));
+      }
+    }
+  } else {
+    cout << "grid invalid in DD0x" << endl;
+  }
+  return tmp;
+}
 
 
 

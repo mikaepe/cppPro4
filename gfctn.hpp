@@ -34,6 +34,7 @@ class Gfctn
     Gfctn D0x() const;			// du/dx
     Gfctn D0y() const;			// du/dx
     Gfctn DD0x() const;			// d2u/dx2
+    Gfctn DD0x2() const;		// d2u/dx2
 
 
 // etc

@@ -51,6 +51,10 @@ int main(int argc, char *argv[])
   cout << "2nd derivative: " << endl;
   DDxU.print();
 
+  Gfctn DDxU2 = U.DD0x2();
+  cout << "2nd derivative (non const. h) " << endl;
+  DDxU2.print();
+
   return 0; 	// Great Success
 }
   
