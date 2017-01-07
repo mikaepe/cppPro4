@@ -31,6 +31,7 @@ class Gfctn
     // MEMBER FUNCTIONS
     void setFunction(fctnPtr f);
     void print() const;
+    Gfctn D0x() const;			// du/dx
 
 
 // etc

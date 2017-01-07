@@ -69,12 +69,52 @@ void Gfctn::setFunction(fctnPtr f) // TODO const??
   }
 }
 
-void Gfctn::print() const {
+void Gfctn::print() const 
+{
   cout << u << endl;
   // u.print();
 }
 
 
 
+/* du/dx of grid function u
+ * usage: Gfctn DxU = U.D0x();
+ */
+Gfctn Gfctn::D0x() const
+{
+  Gfctn tmp(grid);
+  double xminus, xplus;
+  if (grid->gridValid()) {
+    for (int j = 0; j <= grid->ysize(); j++) {
+      for (int i = 1; i < grid->xsize(); i++) { //start at i=1, end at i=n-1
+	xminus = (*grid)(i-1,j).X();
+	xplus = (*grid)(i+1,j).X();
+	tmp.u(i,j) = (u.get(i-1,j)-u.get(i+1,j))/(xplus-xminus);
+      }
+    }
+  } else {
+    cout << "grid invalid in D0x" << endl;
+  }
+  return tmp;
+}
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// file: gfctn.cpp
