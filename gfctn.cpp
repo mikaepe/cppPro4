@@ -100,6 +100,27 @@ Gfctn Gfctn::D0x() const
 }
 
 
+/* du/dy of grid function u
+ * Analogous to above
+ */
+Gfctn Gfctn::D0y() const
+{
+  Gfctn tmp(grid);
+  double yminus, yplus;
+  if (grid->gridValid()) {
+    for (int i = 0; i <= grid->xsize(); i++) {
+      for (int j = 1; j < grid->ysize(); j++) { //start at j=1, end at j=m-1
+	yminus = (*grid)(i,j-1).Y();
+	yplus = (*grid)(i,j+1).Y();
+	tmp.u(i,j) = (u.get(i,j-1)-u.get(i,j+1))/(yplus-yminus);
+      }
+    }
+  } else {
+    cout << "grid invalid in D0x" << endl;
+  }
+  return tmp;
+}
+
 Gfctn Gfctn::DD0x() const
 {
   Gfctn tmp(grid);
