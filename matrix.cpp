@@ -197,7 +197,7 @@ ostream& operator<<(ostream& os, const Matrix& M)
   int n = M.n;
   int m = M.m;
   os << endl;
-  os << fixed << setprecision(2);
+  os << fixed << setprecision(4);
   if (n <= 0 || m <= 0) {
     os << "[]" << endl;
     return os;
