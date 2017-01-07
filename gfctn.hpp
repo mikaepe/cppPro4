@@ -24,7 +24,7 @@ class Gfctn
     Gfctn(const Gfctn& U);
 
     // OPERATORS
-    Gfctn& operator=(const Gfctn& U);
+    Gfctn& operator=(const Gfctn& U);	// TODO implementerad? Behövs inte?
     Gfctn operator+(const Gfctn& U) const;
     Gfctn operator*(const Gfctn& U) const;
 
