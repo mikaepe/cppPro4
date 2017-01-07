@@ -11,7 +11,6 @@ using namespace std;
 class Point 
 {
   private:
-    static bool printConstructors; // TODO remove (for debugging)
     double x;
     double y;
 

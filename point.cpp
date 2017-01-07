@@ -20,35 +20,21 @@ using namespace std;
 
 // CONSTRUCTORS AND DESTRUCTORS 	---	---	---	---
 
-bool Point::printConstructors = false;	// static data member in point
-
 
 // constructor using initializer list
 Point::Point(double xx, double yy) : 
   x(xx), 
   y(yy) 
-{
-  if (printConstructors) {
-    cout << "Point constructor: " << this << endl;
-  }
-}
+{}
 
 // Copy constructor
 Point::Point(const Point& Q) :
   x(Q.x), y(Q.y) 
-{
-  if (printConstructors) {
-    cout << "Point copy-constr: " << this << endl;
-  }
-}
+{}
 
 // destructor
 Point::~Point()
-{
-  if (printConstructors) {
-    cout << "Point destructor:  " << this << endl;
-  }
-}
+{}
 
 
 // OPERATOR OVERLOADINGS	---	---	---	---	---
@@ -59,9 +45,6 @@ Point& Point:: operator=(const Point& Q)
   if (this != &Q) {
     x = Q.x;
     y = Q.y;
-  }
-  if (printConstructors) {
-    cout << "Point copy-assign: " << this << endl;
   }
   return *this;	// dereferencing
 }
@@ -118,7 +101,6 @@ double Point::Y() const
 // output operator for ostream
 ostream& operator<<(ostream& os, const Point& P)
 {
-  //os << "[" << P.X() << "," << P.Y() << "]"; // if not "friended"
   os << "[" << P.x << "," << P.y << "]"; //friend function
   return os;
 }
