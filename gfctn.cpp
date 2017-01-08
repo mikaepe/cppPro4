@@ -27,7 +27,20 @@ Gfctn::~Gfctn()
 }
 */
 
-// Operator overloadings ---------------------------------	
+// Operator overloadings ---------------------------------
+Gfctn& Gfctn::operator=(const Gfctn& U){
+    u = U.u;
+    grid = U.grid;
+    cout << "Copy assignment" << endl;
+}
+
+Gfctn& Gfctn::operator=(Gfctn&& U) noexcept {
+    u = U.u;
+    grid = U.grid;
+    U.u = NULL;
+    U.grid = nullptr;
+    cout << "Move assignment" << endl;
+}
 
 Gfctn Gfctn::operator+(const Gfctn& U) const
 {
@@ -190,6 +203,9 @@ Gfctn Gfctn::DD0x() const
 Gfctn Gfctn::DD0x2() const
 {
   Gfctn tmp(grid);
+  tmp = D0x();
+  tmp = tmp.D0x();
+    /*
   double xp2,xp1,x,xm1,xm2;	// x_{i+2,j},x_{i+1,j},...etc
   if (grid->gridValid()) {
     for (int j = 0; j <= grid->ysize(); j++) {
@@ -207,7 +223,7 @@ Gfctn Gfctn::DD0x2() const
     }
   } else {
     cout << "grid invalid in DD0x" << endl;
-  }
+  }*/
   return tmp;
 }
 

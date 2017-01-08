@@ -119,6 +119,7 @@ void Matrix::writeFile(string fileName) const{
  */
 Matrix &Matrix::operator=(const Matrix &M)
 {
+    cout << "copy assignment matrix" << endl;
   if (this == &M) {
     return *this;
   }
@@ -138,6 +139,21 @@ Matrix &Matrix::operator=(const Matrix &M)
     }
   }
   return *this;
+}
+
+Matrix &Matrix::operator=(Matrix &&M) noexcept{
+    cout << "move assignment matrix" << endl;
+    if (this == &M) {
+        return *this;
+    }
+    m = M.m;
+    n = M.n;
+    a = M.a;
+    M.m = 0;
+    M.n = 0;
+    M.a = nullptr;
+
+    return *this;
 }
 
 /* Matrix-scalar multiplication operator

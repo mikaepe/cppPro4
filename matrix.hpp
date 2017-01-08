@@ -31,6 +31,7 @@ class Matrix
 
     // Operator overloadings
     Matrix &operator=(const Matrix &M);
+    Matrix &operator=(Matrix &&M) noexcept;
     const Matrix &operator*=(const double d);
     const Matrix &operator+=(const Matrix &M);
     const Matrix operator+(const Matrix& M) const;
