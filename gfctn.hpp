@@ -23,21 +23,17 @@ class Gfctn
     Gfctn(const Gfctn& U);
 
     // OPERATORS
-    Gfctn& operator=(const Gfctn& U);	// TODO implementerad? Behövs inte?
-    Gfctn& operator=(Gfctn&& U) noexcept;
+    Gfctn& operator=(const Gfctn& U);	// copy assignment
+    Gfctn& operator=(Gfctn&& U) noexcept; // move assignment
 
     Gfctn operator+(const Gfctn& U) const;
     Gfctn operator*(const Gfctn& U) const;
 
     // MEMBER FUNCTIONS
-    void setFunction(fctnPtr f);	// set grid function values
-    void print() const;			// print grid values
-    void writeFile(std::string fileName) const; //write to binary file
+    void setFunction(const fctnPtr f);	// set grid function values
+    inline void writeFile(std::string fileName) const {u.writeFile(fileName);} //write to binary file
     Gfctn D0x() const;			// du/dx
     Gfctn D0y() const;			// du/dy
-    //Gfctn DD0x() const;			// d2u/dx2
-    Gfctn DD0x2() const;		// d2u/dx2
-    Gfctn DD0y2() const;		// d2u/dy2
     Gfctn laplace() const;		// d2u/dx2 + d2u/dy2
 
 

@@ -3,7 +3,6 @@
 #include <cstdio>	// for writeFile()
 #include <iostream>	
 #include <cmath>	// for fabs
-#include <cstdlib>	// for exit(1)
 
 #include "domain.hpp"
 //#include "curvebase.hpp"
@@ -28,7 +27,7 @@ Domain::Domain(shared_ptr<Curvebase> s1,
   sides[3] = s4;
 
   cornersOk = checkCorners();		// Indicator for corners connected
-  if (cornersOk == false) {
+  if (!cornersOk) {
     sides[0] = sides[1] = sides[2] = sides[3] = nullptr;
   }
 
@@ -68,7 +67,7 @@ void Domain::grid_generation(int n, int m) {
     std::cout << "Warning: Non positive grid size." << std::endl; 
     std::cout << "No grid generated" << std::endl;
     return; 				// No grid is generated
-  } else if (cornersOk == false) {
+  } else if (!cornersOk) {
     // Dont generate grid if corners are disconnected
     std::cout << "No grid generated (corner disconnected)" << std::endl;
     return;				// No grid is generated

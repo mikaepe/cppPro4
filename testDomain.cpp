@@ -3,13 +3,11 @@
 #include <iostream>
 #include <memory>
 #include <cmath>		// for sin and cos
-#include "curvebase.hpp"
 #include "xline.hpp"
 #include "yline.hpp"
 #include "fxcurve.hpp"
 #include "domain.hpp"
 #include "gfctn.hpp"
-#include "point.hpp"		// f defined on points
 
 using namespace std;
 
@@ -48,32 +46,16 @@ int main(int argc, char *argv[])
 
   
   Gfctn DxU = U.D0x();                
-  cout << "derivative: " << endl;
-  //DxU.print();
+  cout << "derivative x: " << endl;
   DxU.writeFile("DxOut.bin");
 
   Gfctn DyU = U.D0y();
-  cout << "derivative: " << endl;
-  //DyU.print();
+  cout << "derivative y: " << endl;
   DyU.writeFile("DyOut.bin");
 
-  //Gfctn DDxU = U.DD0x();
-  //cout << "2nd derivative: " << endl;
-  //DDxU.print();
-
-  Gfctn DDxU2 = U.DD0x2();
-  cout << "2nd derivative (non const. h) " << endl;
-  //DDxU2.print();
-  DDxU2.writeFile("DDxOut.bin");
-
-  Gfctn DDyU2 = U.DD0y2();
-  cout << "2nd derivative (non const. h, wrt y)" << endl;
- // DDyU2.print();
-  DDyU2.writeFile("DDyOut.bin");
   
   Gfctn Laplace = U.laplace();
   cout << "Laplace: " << endl;
- // Laplace.print();
   Laplace.writeFile("laplaceOut.bin");
 
   return 0; 	// Great Success
