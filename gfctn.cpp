@@ -38,7 +38,7 @@ Gfctn &Gfctn::operator=(const Gfctn &U) {
 Gfctn &Gfctn::operator=(Gfctn &&U) noexcept {
   u = U.u;
   grid = U.grid;
-  U.u = NULL;
+  U.u = Matrix();
   U.grid = nullptr;
   cout << "Move assignment" << endl;
   return *this;
