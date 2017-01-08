@@ -55,11 +55,14 @@ The domain class was taken directly from project 3, with the following modificat
 \begin{itemize}
   \item
     Functions \texttt{xsize()}, \texttt{ysize()} and \texttt{gridValid()} was added.
-  \item The class uses \texttt{shared\_ptr} to the boundary curves. 
+  \item 
+    The class uses \texttt{shared\_ptr} to the boundary curves. 
   \item
     The \texttt{writeFile()} function was changed to 
     \texttt{writeFile(std::string fileName)} to be able to save the 
     different grid functions with different filenames.
+  \item
+    \texttt{Point operator()(int i, int j) const} to access the $x$ and $y$ of the grid.
 \end{itemize}
 The \texttt{Curvebase} class and its derived classes are almost identical to those used in 
 project 3. We have attempted to optimize the code slightly, for example by using inlining 
