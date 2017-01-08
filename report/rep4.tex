@@ -104,7 +104,7 @@ $$\left(\frac{\partial f}{\partial \eta}\right)_{ij} \approx \frac{f_{i,j+1}-f_{
 to compute the derivatives of the grid function with respect to the reference coordinates as well as the derivatives of $x$ and $y$ with respect to the reference coordinates. For the border points we use one sided differences instead since we have no boundary conditions.
 
 We then get the the derivatives of the grid function $u$ with respect to $x$ and $y$ by using:
-$$\frac{\partial u}{\partial x} = \frac{1}{\det J} \left(\frac{\partial u}{\partial \xi} \frac{\partial x}{\partial \eta} - \frac{\partial u}{\partial \eta} \frac{\partial y}{\partial \xi}  \right)$$
+$$\frac{\partial u}{\partial x} = \frac{1}{\det J} \left(\frac{\partial u}{\partial \xi} \frac{\partial y}{\partial \eta} - \frac{\partial u}{\partial \eta} \frac{\partial y}{\partial \xi}  \right)$$
 
 $$\frac{\partial u}{\partial y} = \frac{1}{\det J} \left(-\frac{\partial u}{\partial \xi} \frac{\partial x}{\partial \eta} + \frac{\partial u}{\partial \eta} \frac{\partial x}{\partial \xi}  \right)$$
  
