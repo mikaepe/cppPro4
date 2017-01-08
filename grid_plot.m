@@ -69,3 +69,15 @@ fclose(fID);
 figure()
 surf(X,Y,laplace')
 title('Laplace operator')
+
+% True x derivative
+ZDX = 0.02.*X.*cos(0.01*X.^2).*cos(0.1*X) - 0.1.*sin(0.01*X.^2).*sin(0.1*X);
+figure()
+surf(X,Y,ZDX)
+title('True first derivative wrt x')
+
+% Difference between our dx and true
+figure()
+diff = ZDX-Dx';
+surf(X,Y,diff)
+title('True first derivative wrt x - our derivative')
