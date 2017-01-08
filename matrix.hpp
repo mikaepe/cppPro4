@@ -21,9 +21,10 @@ class Matrix
     void fillMatrix(double b[]);
     void identity();
     void print() const;
-    int rowSizeMatrix();
-    int colSizeMatrix();
+    inline int rowSizeMatrix() const {return n;}
+    inline int colSizeMatrix() const {return m;}
     void randomize();
+    void writeFile(std::string fileName) const;
     inline double get(int i, int j) const {
       return a[i*m+j];			// get element from matrix
     }

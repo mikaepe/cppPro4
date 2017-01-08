@@ -159,7 +159,7 @@ void Domain::grid_generation(int n, int m) {
 }
 
 // Print (for testing) the grid coordinates: Careful if n,m are large.
-void Domain::print() {	
+void Domain::print() const {
   if (n_ < 1 || m_ < 1) {
     std::cout << "No grid to print" << std::endl;
     return;
@@ -170,23 +170,27 @@ void Domain::print() {
 }	
 
 // Write the grid to an external file to enable visualization in e.g. matlab.
-void Domain::writeFile(){
+void Domain::writeFile(std::string fileName) const{
   if (n_ < 1 || m_ < 1) {
     std::cout << "No grid available for writeFile()" << std::endl;
     return;
   }
   FILE *fp;
-  fp =fopen("outfile.bin","wb");
+  fp =fopen(fileName.c_str(),"wb");
+  if (fp == nullptr) {
+      std::cout << "Error opening file to write to" << std::endl;
+  }
   fwrite(&n_,sizeof(int),1,fp);
   fwrite(&m_,sizeof(int),1,fp);
   fwrite(x_,sizeof(double),(n_+1)*(m_+1),fp);
   fwrite(y_,sizeof(double),(n_+1)*(m_+1),fp);
   fclose(fp);
+  delete[] fp;
 }
 
 // Function to check if the boundaries are connected (corners)
-bool Domain::checkCorners() {
-  if (fabs(sides[0]->x(1) - sides[1]->x(0)) > 1e-4 || 
+bool Domain::checkCorners() const {
+  if (fabs(sides[0]->x(1) - sides[1]->x(0)) > 1e-4 ||
       fabs(sides[0]->y(1) - sides[1]->y(0)) > 1e-4) {
     std::cout << "Low-Right corner disconnected" << std::endl;
     return false;
@@ -211,7 +215,7 @@ bool Domain::checkCorners() {
 
 // new functions for pro4:
 
-bool Domain::gridValid()
+bool Domain::gridValid () const
 {
   if (m_ != 0 && checkCorners()) {
     std::cout << "grid valid!" << std::endl;

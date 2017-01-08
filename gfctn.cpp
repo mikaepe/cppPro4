@@ -75,6 +75,11 @@ void Gfctn::print() const
   // u.print();
 }
 
+void Gfctn::writeFile(string fileName) const
+{
+    u.writeFile(fileName);
+}
+
 
 
 /* du/dx of grid function u
@@ -116,7 +121,7 @@ Gfctn Gfctn::D0y() const
       }
     }
   } else {
-    cout << "grid invalid in D0x" << endl;
+    cout << "grid invalid in D0y" << endl;
   }
   return tmp;
 }

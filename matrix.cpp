@@ -78,16 +78,6 @@ void Matrix::print() const
   }
 }
 
-int Matrix::rowSizeMatrix()
-{
-  return n;
-}
-
-int Matrix::colSizeMatrix()
-{
-  return m;
-}
-
 void Matrix::randomize()
 {
   if (n == 0 || m == 0) {
@@ -100,6 +90,24 @@ void Matrix::randomize()
       a[i*m+j] = rand()%10;
     }
   }
+}
+
+// Write the grid to an external file to enable visualization in e.g. matlab.
+void Matrix::writeFile(string fileName) const{
+    if (n < 1 || m < 1) {
+        cout << "No matrix available for writeFile()" << endl;
+        return;
+    }
+    FILE *fp;
+    fp =fopen(fileName.c_str(),"wb");
+    if (fp == nullptr) {
+        cout << "Error opening file to write to" << endl;
+        return;
+    }
+    fwrite(&n,sizeof(int),1,fp);
+    fwrite(&m,sizeof(int),1,fp);
+    fwrite(a,sizeof(double),n*m,fp);
+    fclose(fp);
 }
 
 
@@ -213,6 +221,8 @@ ostream& operator<<(ostream& os, const Matrix& M)
   }
   return os;
 }
+
+
 
 
 // matrix.cpp

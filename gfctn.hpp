@@ -30,6 +30,7 @@ class Gfctn
     // MEMBER FUNCTIONS
     void setFunction(fctnPtr f);	// set grid function values
     void print() const;			// print grid values
+    void writeFile(std::string fileName) const; //write to binary file
     Gfctn D0x() const;			// du/dx
     Gfctn D0y() const;			// du/dy
     Gfctn DD0x() const;			// d2u/dx2
