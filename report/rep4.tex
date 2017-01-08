@@ -61,7 +61,9 @@ The domain class was taken directly from project 3, with the following modificat
     \texttt{writeFile(std::string fileName)} to be able to save the 
     different grid functions with different filenames.
 \end{itemize}
-
+The \texttt{Curvebase} class and its derived classes are almost identical to those used in 
+project 3. We have attempted to optimize the code slightly, for example by using inlining 
+in the classes \texttt{xLine} and \texttt{yLine}.
 \subsection*{Task 2: The Gfctn class}
 The class for gridfunctions \texttt{class Gfctn} has the following data members.
 \begin{itemize}
@@ -93,13 +95,32 @@ The following member functions are implemented.
 \end{itemize}
 In addition to those functions listed above, the class has functions to compute 
 the approximations to $\tfrac{\partial u}{\partial x}$, $\tfrac{\partial u}{\partial y}$,
-$\tfrac{\partial^2 u}{\partial x^2}$ and $\tfrac{\partial^2 u}{\partial y^2}$. Finally the class has a function for computing the Laplacian of the grid function, $\Delta u = \tfrac{\partial^2 u}{
-  \partial x^2} + \tfrac{\partial^2 u}{\partial y^2}$.
+$\tfrac{\partial^2 u}{\partial x^2}$ and $\tfrac{\partial^2 u}{\partial y^2}$.
+Finally the class has a function for computing the Laplacian of the grid function, 
+$\Delta u = \tfrac{\partial^2 u}{\partial x^2} + \tfrac{\partial^2 u}{\partial y^2}$.
+These functions are
+\begin{itemize}
+  \item
+    \texttt{Gfctn D0x() const}
+  \item
+    \texttt{Gfctn D0y() const}
+  \item
+    \texttt{Gfctn DD0x() const}
+  \item
+    \texttt{Gfctn DD0y() const}
+  \item
+    \texttt{Gfctn laplace() const}
+\end{itemize}
     
 
 
 
-\subsection*{Task 3: Discretizing a function and computing differential operators}
+
+\subsection*{Task 3: Results}
+We investigate the class using the function
+\begin{equation*}
+  u(x,y) = \sin (x^2/10^2) \cos (x/10) + y
+\end{equation*}
 
 
 \newpage
@@ -110,13 +131,13 @@ $\tfrac{\partial^2 u}{\partial x^2}$ and $\tfrac{\partial^2 u}{\partial y^2}$. F
 \lstinputlisting[language=C++,basicstyle=\scriptsize]{../curvebase.hpp}
 \lstinputlisting[language=C++,basicstyle=\scriptsize]{../curvebase.cpp}
 \subsubsection*{The derived classes from the Curvebase Class}
-These are all identical to the derived classes in project 3.
-%\lstinputlisting[language=C++,basicstyle=\scriptsize]{../xline.hpp}
+\texttt{yline}).
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../xline.hpp}
 %\lstinputlisting[language=C++,basicstyle=\scriptsize]{../xline.cpp}
-%\lstinputlisting[language=C++,basicstyle=\scriptsize]{../yline.hpp}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../yline.hpp}
 %\lstinputlisting[language=C++,basicstyle=\scriptsize]{../yline.cpp}
-%\lstinputlisting[language=C++,basicstyle=\scriptsize]{../fxcurve.hpp}
-%\lstinputlisting[language=C++,basicstyle=\scriptsize]{../fxcurve.cpp}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../fxcurve.hpp}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../fxcurve.cpp}
 \subsubsection*{The Domain Class}
 \lstinputlisting[language=C++,basicstyle=\scriptsize]{../domain.hpp}
 \lstinputlisting[language=C++,basicstyle=\scriptsize]{../domain.cpp}
