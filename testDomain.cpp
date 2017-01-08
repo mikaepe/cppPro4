@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
 
   Gfctn DDxU = U.DD0x();
   cout << "2nd derivative: " << endl;
-  DDxU.print();
+  //DDxU.print();
 
   Gfctn DDxU2 = U.DD0x2();
   cout << "2nd derivative (non const. h) " << endl;
