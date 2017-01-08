@@ -19,45 +19,30 @@ inline double f(Point p) {
 int main(int argc, char *argv[])
 {
 
-  /*
-  shared_ptr<xQuad> a = make_shared<xQuad>(-.25,0,.25,-1,1);
-  shared_ptr<yLine> b = make_shared<yLine>(0,1,1);
-  shared_ptr<xLine> c = make_shared<xLine>(-1,1,1);
-  shared_ptr<yLine> d = make_shared<yLine>(0,1,-1);
-
-  */
-
   shared_ptr<fxCurve> a = make_shared<fxCurve>(-10.0,5.0);
   shared_ptr<yLine> b = make_shared<yLine>(0.0,3.0,5.0);
   shared_ptr<xLine> c = make_shared<xLine>(-10.0,5.0,3.0);
   shared_ptr<yLine> d = make_shared<yLine>(0.0,3.0,-10.0);
 
-
-  
-
   shared_ptr<Domain> grid = make_shared<Domain>(a,b,c,d);
   grid->grid_generation(50,20);
-  cout << "x-size = " << grid->xsize() << endl;
-  cout << "y-size = " << grid->ysize() << endl;
   grid->writeFile("gridOut.bin");
   Gfctn U = Gfctn(grid);
   U.setFunction(&f);
   //U.print();
-
   
   Gfctn DxU = U.D0x();                
-  cout << "derivative x: " << endl;
+  cout << "derivative x" << endl;
   DxU.writeFile("DxOut.bin");
 
   Gfctn DyU = U.D0y();
-  cout << "derivative y: " << endl;
+  cout << "derivative y" << endl;
   DyU.writeFile("DyOut.bin");
-
   
   Gfctn Laplace = U.laplace();
-  cout << "Laplace: " << endl;
+  cout << "Laplace" << endl;
   Laplace.writeFile("laplaceOut.bin");
 
-  return 0; 	// Great Success
+  return 0;
 }
   

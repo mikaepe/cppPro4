@@ -2,13 +2,6 @@
 
 
 /* Source file for class Point. 
- * Constructor, copy constructor, destructor.
- * Copy assignment overloading, overloadings of operators
- * for P = -Q; P -= Q; P = Q1-Q2;
- * Member access functions for cartesian coordinates.
- * Function to set point to origin.
- * Friend overloading for output stream.
- *
  * See also point.hpp for declarations
  */
 
@@ -34,55 +27,6 @@ Point::Point(const Point& Q) :
 // destructor
 Point::~Point()
 {}
-
-
-// OPERATOR OVERLOADINGS	---	---	---	---	---
-
-/*
-// copy-assignment
-Point& Point:: operator=(const Point& Q)
-{
-  if (this != &Q) {
-    x = Q.x;
-    y = Q.y;
-  }
-  return *this;	// dereferencing
-}
-
-// negative operator i.e. P = -Q;
-const Point Point:: operator-() const
-{
-  return Point(-x,-y);
-}
-
-// "reduce by" operator i.e. P -= Q;
-const Point& Point:: operator-=(const Point& Q)
-{
-  x -= Q.x;
-  y -= Q.y;
-  return *this;
-}
-
-// minus operator i.e. P-Q
-const Point Point:: operator-(const Point& Q) const
-{
-  return Point(x-Q.x,y-Q.y);
-}
-
-// MISC. MEMBER FUNCTIONS	---	---	---	---	---
-
-// set x = y = 0, i.e. point at origin.
-void Point::zero()
-{
-  x = y = 0.0;
-}
-
-// standard member function print()
-void Point::print()
-{
-  cout << "[" << x << "," << y << "]" << endl;
-}
-*/
 
 // member access function for x
 double Point::X() const

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.10.17)  8 JAN 2017 17:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.10.17)  8 JAN 2017 17:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -322,6 +322,9 @@ LaTeX Warning: Label `FIG_jjj' multiply defined.
 
 LaTeX Warning: Label `FIG_jjj' multiply defined.
 
+
+LaTeX Warning: Label `FIG_jjj' multiply defined.
+
 )
 \openout1 = `rep4.aux'.
 
@@ -569,10 +572,30 @@ Package pdftex.def Info: dudyD0y-eps-converted-to.pdf used on input line 211.
  [5
 
  <./dudy-eps-converted-to.pdf>] [6 <./D0y-eps-converted-to.pdf> <./dudyD0y-eps-
-converted-to.pdf>] (../testDomain.cpp
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 3.
+converted-to.pdf>]
+Package epstopdf Info: Source file: <Laplace.eps>
+(epstopdf)                    date: 2017-01-08 17:49:15
+(epstopdf)                    size: 334267 bytes
+(epstopdf)             Output file: <Laplace-eps-converted-to.pdf>
+(epstopdf)                    date: 2017-01-08 17:50:25
+(epstopdf)                    size: 35774 bytes
+(epstopdf)             Command: <repstopdf --outfile=Laplace-eps-converted-to.p
+df Laplace.eps>
+(epstopdf)             \includegraphics on input line 225.
+Package epstopdf Info: Output file is already uptodate.
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
+<Laplace-eps-converted-to.pdf, id=103, 380.42125pt x 304.13625pt>
+File: Laplace-eps-converted-to.pdf Graphic file (type pdf)
+
+<use Laplace-eps-converted-to.pdf>
+Package pdftex.def Info: Laplace-eps-converted-to.pdf used on input line 225.
+(pdftex.def)             Requested size: 284.53738pt x 227.62827pt.
+ [7
+
+ <./Laplace-eps-converted-to.pdf>]
+(../main1.cpp
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 3.
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <7> not available
@@ -584,44 +607,43 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <7> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 15.
-LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <7> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 23.
 ) (../curvebase.hpp
-[7
-
-]) (../curvebase.cpp [8]) (../xline.hpp [9]) (../yline.hpp) (../fxcurve.hpp
-[10]) (../fxcurve.cpp) (../domain.hpp
+[8]) (../curvebase.cpp [9]) (../xline.hpp [10]) (../yline.hpp) (../fxcurve.hpp)
+(../fxcurve.cpp [11]) (../domain.hpp
 Overfull \hbox (65.64987pt too wide) in paragraph at lines 20--21
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[11]
+[12]
 Overfull \hbox (41.73294pt too wide) in paragraph at lines 45--46
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-) (../domain.cpp [12] [13] [14]) (../gfctn.hpp
+) (../domain.cpp
+LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <7> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 38.
+ [13] [14] [15]) (../gfctn.hpp
 Overfull \hbox (84.78342pt too wide) in paragraph at lines 34--35
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-) (../gfctn.cpp [15]
+) (../gfctn.cpp
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <7> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 24.
- [16] [17]) (../matrix.hpp) (../matrix.cpp [18] [19]
-[20]) (../point.hpp [21]) (../point.cpp [22]) [23] (./rep4.aux)
+ [16] [17] [18]) (../matrix.hpp) (../matrix.cpp [19] [20]
+[21]) (../point.hpp [22]) (../point.cpp) [23] (./rep4.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5977 strings out of 494953
- 79076 string characters out of 6180976
- 223731 words of memory out of 5000000
- 9120 multiletter control sequences out of 15000+600000
+ 5982 strings out of 494953
+ 79203 string characters out of 6180976
+ 218731 words of memory out of 5000000
+ 9124 multiletter control sequences out of 15000+600000
  10297 words of font info for 37 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,12n,58p,284b,1751s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,12n,58p,284b,1719s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/mikael/.texmf-var/fonts/pk/ljfour/jknappen/ec/tcti0700.600pk> </home/
 mikael/.texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk> </home/mikael/.te
 xmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-di
@@ -638,10 +660,10 @@ ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/public/amsfonts/cm/cmtt10.pfb>
-Output written on rep4.pdf (23 pages, 485088 bytes).
+Output written on rep4.pdf (23 pages, 513913 bytes).
 PDF statistics:
- 222 PDF objects out of 1000 (max. 8388607)
- 154 compressed objects within 2 object streams
+ 231 PDF objects out of 1000 (max. 8388607)
+ 160 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 36 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 41 words of extra memory for PDF output out of 10000 (max. 10000000)
 

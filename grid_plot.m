@@ -27,20 +27,20 @@ m1 = fread(fID,1,'int');
 Dx = fread(fID,[m1 n1],'double')';
 fclose(fID);
 
-figure
+figure;
 surf(X,Y,Dx')
 title('D0x (implemented dudx)')
 %print -depsc 'D0x'
 
 % True x derivative
 ZDX = 0.02.*X.*cos(0.01*X.^2).*cos(0.1*X) - 0.1.*sin(0.01*X.^2).*sin(0.1*X);
-figure
+figure;
 surf(X,Y,ZDX)
 title('dudx (true)')
 %print -depsc 'dudx'
 
 % Difference between our dx and true
-figure()
+figure;
 diff = ZDX-Dx';
 surf(X,Y,diff)
 title('dudx - D0x (true - implemented)')
@@ -57,7 +57,7 @@ m1 = fread(fID,1,'int');
 Dy = fread(fID,[m1 n1],'double')';
 fclose(fID);
 
-figure()
+figure;
 surf(X,Y,Dy')
 title('D0y (implemented dudy)')
 %print -depsc 'D0y'
@@ -81,6 +81,7 @@ title('dudy-D0y (true - implemented)')
 % d2udx2
 % -------------------------------------------------------
 
+%{
 % Grid function for DDx
 fID = fopen('DDxOut.bin');
 n1 = fread(fID,1,'int');
@@ -88,15 +89,17 @@ m1 = fread(fID,1,'int');
 DDx = fread(fID,[m1 n1],'double')';
 fclose(fID);
 
-figure()
+figure;
 surf(X,Y,DDx')
-title('d2udx2 (implemented)')
-
+title('DD0x (implemented d2u/dx2)')
+print -depsc 'DD0x'
+%}
 
 % -------------------------------------------------------
 % d2udy2
 % -------------------------------------------------------
 
+%{
 % Grid function for DDy
 fID = fopen('DDyOut.bin');
 n1 = fread(fID,1,'int');
@@ -104,10 +107,11 @@ m1 = fread(fID,1,'int');
 DDy = fread(fID,[m1 n1],'double')';
 fclose(fID);
 
-figure()
+figure;
 surf(X,Y,DDy')
-title('d2udy2 (implemented)')
-
+title('DD0y (implemented d2u/dy2)')
+print -depsc 'DD0y'
+%}
 
 % -------------------------------------------------------
 % Laplace-operator
@@ -120,7 +124,10 @@ m1 = fread(fID,1,'int');
 laplace = fread(fID,[m1 n1],'double')';
 fclose(fID);
 
-figure()
+close all;
+
+figure;
 surf(X,Y,laplace')
 title('Laplace operator')
+print -depsc 'Laplace'
 

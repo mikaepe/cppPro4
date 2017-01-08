@@ -1,9 +1,9 @@
 CPPFLAGS=-Wall -g -std=c++11
 
-testDomain: testDomain.cpp domain.cpp curvebase.cpp fxcurve.cpp point.cpp gfctn.cpp matrix.cpp
+main1: main1.cpp domain.cpp curvebase.cpp fxcurve.cpp point.cpp gfctn.cpp matrix.cpp
 
 clean:
-	rm -f testDomain
+	rm -f main1
 	rm -f outfile.bin
 	rm -f gridOut.bin
 	rm -f DxOut.bin
