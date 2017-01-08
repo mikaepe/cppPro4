@@ -16,10 +16,10 @@ class xQuad: public Curvebase {
   
   protected:
     double c2, c1, c0;
-    double xp(double p);
-    double yp(double p);
-    double dxp(double p);
-    double dyp(double p); 
+    double xp(double p) const;
+    double yp(double p) const;
+    double dxp(double p) const;
+    double dyp(double p) const;
 };
 
 

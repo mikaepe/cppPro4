@@ -16,10 +16,10 @@ xQuad::xQuad(double cc2, double cc1, double cc0, double x0, double x1) {
 xQuad::~xQuad() {}
 
 // Curve parametrized by user parameter
-double xQuad::xp(double p) { return p;}
-double xQuad::yp(double p) { return c2*p*p+c1*p + c0; }
+double xQuad::xp(double p) const { return p;}
+double xQuad::yp(double p) const { return c2*p*p+c1*p + c0; }
 
 // Derivatives w.r.t. the user parameter
-double xQuad::dxp(double p) { return 1; }
-double xQuad::dyp(double p) { return 2*c2*p + c1;}
+double xQuad::dxp(double p) const { return 1; }
+double xQuad::dyp(double p) const { return 2*c2*p + c1;}
 

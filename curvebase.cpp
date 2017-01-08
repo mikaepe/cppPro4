@@ -11,19 +11,19 @@ Curvebase::Curvebase() {}; // Default constructor
 /* Integrate , i2Simpson, iSimpson all taken
  * directly from project 1.
  */
-inline double Curvebase::i2Simpson(double a, double b) {
+inline double Curvebase::i2Simpson(double a, double b) const {
   return iSimpson(a,0.5*(a+b)) + iSimpson(0.5*(a+b),b);
 }
 
-inline double Curvebase::iSimpson(double a, double b) {
+inline double Curvebase::iSimpson(double a, double b) const {
   return ((b-a)/6.0)*(dL(a)+4.0*dL(0.5*(a+b)) + dL(b));
 }
 
-inline double Curvebase::dL(double p) {
+inline double Curvebase::dL(double p) const {
   return sqrt(dxp(p)*dxp(p) + dyp(p)*dyp(p));
 }
 
-double Curvebase::integrate(double a, double b){
+double Curvebase::integrate(double a, double b) const{
 
   double tolI = 1e-8;
   double I = 0, I1, I2, errest;
@@ -62,7 +62,7 @@ double Curvebase::integrate(double a, double b){
 /* Newton solver for equation f(p) = l(p) - s*l(b)
  * input: p0 is initial guess for Newtons method.
  */
-double Curvebase::newtonsolve(double p0, double s) {
+double Curvebase::newtonsolve(double p0, double s) const{
 
   int iter = 0, maxiter = 150;
   double tolN = 1e-6;
@@ -85,7 +85,7 @@ double Curvebase::newtonsolve(double p0, double s) {
 
 
 // Curve parametrized by grid coordinate
-double Curvebase::x(double s){
+double Curvebase::x(double s) const{
   double p, p0;
   p0 = a + s*length;				// Initial guess for Newtons meth.
   p = newtonsolve(p0,s);
@@ -93,7 +93,7 @@ double Curvebase::x(double s){
 }
 
 // Curve parametrized by grid coordinate
-double Curvebase::y(double s){
+double Curvebase::y(double s) const{
   double p, p0;
   p0 = a + s*length;				// Initial guess for Newtons meth.
   p = newtonsolve(p0,s);

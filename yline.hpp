@@ -13,16 +13,16 @@ class yLine: public Curvebase{
   public:
     yLine(double y0, double y1, double x0);	// Constructor
     ~yLine();					// Destructor
-    double x(double s); 			// Grid coordinate s
-    double y(double s); 			// Grid coordinate s
+    double x(double s) const; 			// Grid coordinate s
+    double y(double s) const; 			// Grid coordinate s
   
   protected:
     double xC;
-    double xp(double p);
-    double yp(double p);  
-    double dxp(double p);
-    double dyp(double p); 
-    double integrate(double a, double b); 	//Arc length
+    double xp(double p) const;
+    double yp(double p) const;
+    double dxp(double p) const;
+    double dyp(double p) const;
+    double integrate(double a, double b) const; 	//Arc length
 };
 
 
