@@ -81,3 +81,14 @@ figure()
 diff = ZDX-Dx';
 surf(X,Y,diff)
 title('True first derivative wrt x - our derivative')
+
+% True y derivative
+figure()
+surf(X,Y,ones(size(X)))
+title('True first derivative wrt y')
+
+% Difference between our dx and true
+figure()
+diffy = Dy'-1;
+surf(X,Y,diffy)
+title('True first derivative wrt y - our derivative')

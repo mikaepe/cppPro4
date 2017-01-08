@@ -101,56 +101,47 @@ void Gfctn::writeFile(string fileName) const
  */
 Gfctn Gfctn::D0x() const
 {
-  Gfctn tmp(grid);
-  double xminus, xplus;
   if (grid->gridValid()) {
+    Gfctn tmp(grid);
+    double xi, xj, yi, yj, ui, uj;
+    double h1 = 1.0 / grid->xsize();
+    double h2 = 1.0 / grid->ysize();
+
     for (int j = 0; j <= grid->ysize(); j++) {
-      for (int i = 1; i < grid->xsize(); i++) { //start at i=1, end at i=n-1
-	xminus = (*grid)(i-1,j).X();
-	xplus = (*grid)(i+1,j).X();
-	//tmp.u(i,j) = (u.get(i+1,j)-u.get(i-1,j))/(xplus-xminus);
-      }
-    }
-  } else {
-    cout << "grid invalid in D0x" << endl;
-  }
-
-  double xi, xj, yi, yj, ui, uj;
-  double h1= 1.0/grid->xsize(); double h2 = 1.0/grid->ysize();
-
-
-  for (int j = 0; j <= grid->ysize(); j++) {
-    for (int i = 0; i <= grid->xsize(); i++) { //start at i=1, end at i=n-1
-      if (i==0){
-        xi = ((*grid)(i+1,j).X()-(*grid)(i,j).X())/h1;
-        yi = ((*grid)(i+1,j).Y()-(*grid)(i,j).Y())/h1;
-        ui = (u.get(i+1,j)-u.get(i,j))/h1;
-      }else if (i==grid->xsize()){
-        xi = ((*grid)(i,j).X()-(*grid)(i-1,j).X())/h1;
-        yi = ((*grid)(i,j).Y()-(*grid)(i-1,j).Y())/h1;
-        ui = (u.get(i,j)-u.get(i-1,j))/h1;
-      } else {
-        xi = ((*grid)(i+1,j).X()-(*grid)(i-1,j).X())/(2.0*h1);
-        yi = ((*grid)(i+1,j).Y()-(*grid)(i-1,j).Y())/(2.0*h1);
-        ui = (u.get(i+1,j)-u.get(i-1,j))/(2.0*h1);
-      }
-      if (j==0){
-        xj = ((*grid)(i,j+1).X()-(*grid)(i,j).X())/h2;
-        yj = ((*grid)(i,j+1).Y()-(*grid)(i,j).Y())/h2;
-        uj = (u.get(i,j+1)-u.get(i,j))/h2;
-        }else if (j==grid->ysize()){
-          xj = ((*grid)(i,j).X()-(*grid)(i,j-1).X())/h2;
-          yj = ((*grid)(i,j).Y()-(*grid)(i,j-1).Y())/h2;
-          uj = (u.get(i,j)-u.get(i,j-1))/h2;
+      for (int i = 0; i <= grid->xsize(); i++) { //start at i=1, end at i=n-1
+        if (i == 0) {
+          xi = ((*grid)(i + 1, j).X() - (*grid)(i, j).X()) / h1;
+          yi = ((*grid)(i + 1, j).Y() - (*grid)(i, j).Y()) / h1;
+          ui = (u.get(i + 1, j) - u.get(i, j)) / h1;
+        } else if (i == grid->xsize()) {
+          xi = ((*grid)(i, j).X() - (*grid)(i - 1, j).X()) / h1;
+          yi = ((*grid)(i, j).Y() - (*grid)(i - 1, j).Y()) / h1;
+          ui = (u.get(i, j) - u.get(i - 1, j)) / h1;
         } else {
-          xj = ((*grid)(i,j+1).X()-(*grid)(i,j-1).X())/(2.0*h2);
-          yj = ((*grid)(i,j+1).Y()-(*grid)(i,j-1).Y())/(2.0*h2);
-          uj = (u.get(i,j+1)-u.get(i,j-1))/(2.0*h2);
+          xi = ((*grid)(i + 1, j).X() - (*grid)(i - 1, j).X()) / (2.0 * h1);
+          yi = ((*grid)(i + 1, j).Y() - (*grid)(i - 1, j).Y()) / (2.0 * h1);
+          ui = (u.get(i + 1, j) - u.get(i - 1, j)) / (2.0 * h1);
         }
-      tmp.u(i,j) = (ui*yj-uj*yi)/(xi*yj-yi*xj);
+        if (j == 0) {
+          xj = ((*grid)(i, j + 1).X() - (*grid)(i, j).X()) / h2;
+          yj = ((*grid)(i, j + 1).Y() - (*grid)(i, j).Y()) / h2;
+          uj = (u.get(i, j + 1) - u.get(i, j)) / h2;
+        } else if (j == grid->ysize()) {
+          xj = ((*grid)(i, j).X() - (*grid)(i, j - 1).X()) / h2;
+          yj = ((*grid)(i, j).Y() - (*grid)(i, j - 1).Y()) / h2;
+          uj = (u.get(i, j) - u.get(i, j - 1)) / h2;
+        } else {
+          xj = ((*grid)(i, j + 1).X() - (*grid)(i, j - 1).X()) / (2.0 * h2);
+          yj = ((*grid)(i, j + 1).Y() - (*grid)(i, j - 1).Y()) / (2.0 * h2);
+          uj = (u.get(i, j + 1) - u.get(i, j - 1)) / (2.0 * h2);
+        }
+        tmp.u(i, j) = (ui * yj - uj * yi) / (xi * yj - yi * xj);
+      }
     }
+    return tmp;
+  } else {
+      cout << "grid invalid in D0x" << endl;
   }
-  return tmp;
 }
 
 
@@ -159,20 +150,47 @@ Gfctn Gfctn::D0x() const
  */
 Gfctn Gfctn::D0y() const
 {
-  Gfctn tmp(grid);
-  double yminus, yplus;
   if (grid->gridValid()) {
-    for (int i = 0; i <= grid->xsize(); i++) {
-      for (int j = 1; j < grid->ysize(); j++) { //start at j=1, end at j=m-1
-	yminus = (*grid)(i,j-1).Y();
-	yplus = (*grid)(i,j+1).Y();
-	tmp.u(i,j) = (u.get(i,j+1)-u.get(i,j-1))/(yplus-yminus);
+    Gfctn tmp(grid);
+    double xi, xj, yi, yj, ui, uj;
+    double h1 = 1.0 / grid->xsize();
+    double h2 = 1.0 / grid->ysize();
+
+    for (int j = 0; j <= grid->ysize(); j++) {
+      for (int i = 0; i <= grid->xsize(); i++) { //start at i=1, end at i=n-1
+        if (i == 0) {
+          xi = ((*grid)(i + 1, j).X() - (*grid)(i, j).X()) / h1;
+          yi = ((*grid)(i + 1, j).Y() - (*grid)(i, j).Y()) / h1;
+          ui = (u.get(i + 1, j) - u.get(i, j)) / h1;
+        } else if (i == grid->xsize()) {
+          xi = ((*grid)(i, j).X() - (*grid)(i - 1, j).X()) / h1;
+          yi = ((*grid)(i, j).Y() - (*grid)(i - 1, j).Y()) / h1;
+          ui = (u.get(i, j) - u.get(i - 1, j)) / h1;
+        } else {
+          xi = ((*grid)(i + 1, j).X() - (*grid)(i - 1, j).X()) / (2.0 * h1);
+          yi = ((*grid)(i + 1, j).Y() - (*grid)(i - 1, j).Y()) / (2.0 * h1);
+          ui = (u.get(i + 1, j) - u.get(i - 1, j)) / (2.0 * h1);
+        }
+        if (j == 0) {
+          xj = ((*grid)(i, j + 1).X() - (*grid)(i, j).X()) / h2;
+          yj = ((*grid)(i, j + 1).Y() - (*grid)(i, j).Y()) / h2;
+          uj = (u.get(i, j + 1) - u.get(i, j)) / h2;
+        } else if (j == grid->ysize()) {
+          xj = ((*grid)(i, j).X() - (*grid)(i, j - 1).X()) / h2;
+          yj = ((*grid)(i, j).Y() - (*grid)(i, j - 1).Y()) / h2;
+          uj = (u.get(i, j) - u.get(i, j - 1)) / h2;
+        } else {
+          xj = ((*grid)(i, j + 1).X() - (*grid)(i, j - 1).X()) / (2.0 * h2);
+          yj = ((*grid)(i, j + 1).Y() - (*grid)(i, j - 1).Y()) / (2.0 * h2);
+          uj = (u.get(i, j + 1) - u.get(i, j - 1)) / (2.0 * h2);
+        }
+        tmp.u(i, j) = (- ui * xj + uj * xi) / (xi * yj - yi * xj);
       }
     }
+    return tmp;
   } else {
     cout << "grid invalid in D0y" << endl;
   }
-  return tmp;
 }
 
 
@@ -259,9 +277,8 @@ Gfctn Gfctn::DD0y2() const
  */
 Gfctn Gfctn::laplace() const
 {
-  Gfctn d2Udx2 = this->DD0x2();
-  Gfctn d2Udy2 = this->DD0y2();
-  return d2Udx2+ d2Udy2;
+  Gfctn laplace = D0x().D0x() + D0y().D0y();
+  return laplace;
 }
 
 
