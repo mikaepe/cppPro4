@@ -51,7 +51,16 @@
 \maketitle
 
 \subsection*{Task 1: Redesigning the Domain class}
-
+The domain class was taken directly from project 3, with the following modifications. 
+\begin{itemize}
+  \item
+    Functions \texttt{xsize()}, \texttt{ysize()} and \texttt{gridValid()} was added.
+  \item The class was uses \texttt{shared\_ptr} to the boundary curves. 
+  \item
+    The \texttt{writeFile()} function was changed to 
+    \texttt{writeFile(std::string fileName)} to be able to save the 
+    different grid functions with different filenames.
+\end{itemize}
 
 \subsection*{Task 2: The Gfctn class}
 
@@ -67,12 +76,13 @@
 \lstinputlisting[language=C++,basicstyle=\scriptsize]{../curvebase.hpp}
 \lstinputlisting[language=C++,basicstyle=\scriptsize]{../curvebase.cpp}
 \subsubsection*{The derived classes from the Curvebase Class}
-\lstinputlisting[language=C++,basicstyle=\scriptsize]{../xline.hpp}
-\lstinputlisting[language=C++,basicstyle=\scriptsize]{../xline.cpp}
-\lstinputlisting[language=C++,basicstyle=\scriptsize]{../yline.hpp}
-\lstinputlisting[language=C++,basicstyle=\scriptsize]{../yline.cpp}
-\lstinputlisting[language=C++,basicstyle=\scriptsize]{../fxcurve.hpp}
-\lstinputlisting[language=C++,basicstyle=\scriptsize]{../fxcurve.cpp}
+These are all identical to the derived classes in project 3.
+%\lstinputlisting[language=C++,basicstyle=\scriptsize]{../xline.hpp}
+%\lstinputlisting[language=C++,basicstyle=\scriptsize]{../xline.cpp}
+%\lstinputlisting[language=C++,basicstyle=\scriptsize]{../yline.hpp}
+%\lstinputlisting[language=C++,basicstyle=\scriptsize]{../yline.cpp}
+%\lstinputlisting[language=C++,basicstyle=\scriptsize]{../fxcurve.hpp}
+%\lstinputlisting[language=C++,basicstyle=\scriptsize]{../fxcurve.cpp}
 \subsubsection*{The Domain Class}
 \lstinputlisting[language=C++,basicstyle=\scriptsize]{../domain.hpp}
 \lstinputlisting[language=C++,basicstyle=\scriptsize]{../domain.cpp}
