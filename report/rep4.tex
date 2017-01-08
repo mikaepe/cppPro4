@@ -1,0 +1,99 @@
+% REPORT FOR PROJECT2 SF2565
+
+\documentclass[a4paper,10pt]{article}
+
+%%Packages	%%%	%%%	%%%	%%%	%%%	%%%	%%%
+\usepackage{amsmath,framed}
+\usepackage[latin1]{inputenc} 	
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{textcomp}
+%\usepackage{tikz}
+
+%%Settings	%%%	%%%	%%%	%%%	%%%	%%%	%%%
+\renewcommand{\d}{\text{d}}
+\newcommand{\e}{\text{e}}
+\newcommand{\ve}{\mathbf}
+\newcommand\numb{\addtocounter{equation}{1}\tag{\theequation}}
+
+\setlength\fboxsep{1.2mm}
+\setlength\fboxrule{0.5mm}
+
+\lstset { %
+  language=C++,
+  backgroundcolor=\color{black!3},	% set backgroundcolor
+  basicstyle=\footnotesize,		% basic font setting
+}
+
+%%Margins	%%%	%%%	%%%	%%%	%%%	%%%	%%%
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=35mm,
+  right=35mm,
+  top=35mm,
+  bottom=35mm,
+}
+
+%%Header & Footer	%%%	%%%	%%%	%%%	%%%	%%%
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1pt}
+\rhead{Hanna Hultin, Mikael Perssson}
+%8509080456 mitt persnr om vi vill ha det
+\lhead{P4 SF565}
+
+\title{Project 4, SF2565}
+\author{Hanna Hultin, hhultin@kth.se, 931122-2468, TTMAM2 \\ Mikael Persson, mikaepe@kth.se, 850908-0456, TTMAM2}
+\begin{document}
+\maketitle
+
+\subsection*{Task 1: Redesigning the Domain class}
+
+
+\subsection*{Task 2: The Gfctn class}
+
+
+\subsection*{Task 3: Discretizing a function and computing differential operators}
+
+
+\newpage
+\subsection*{Code}
+\subsubsection*{Main}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../testDomain.cpp}
+\subsubsection*{The Curvebase Class}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../curvebase.hpp}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../curvebase.cpp}
+\subsubsection*{The derived classes from the Curvebase Class}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../xline.hpp}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../xline.cpp}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../yline.hpp}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../yline.cpp}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../fxcurve.hpp}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../fxcurve.cpp}
+\subsubsection*{The Domain Class}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../domain.hpp}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../domain.cpp}
+
+\subsubsection*{The Gfctn Class}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../gfctn.hpp}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../gfctn.cpp}
+
+\subsubsection*{The Matrix Class}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../matrix.hpp}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../matrix.cpp}
+
+\subsubsection*{The Point Class}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../point.hpp}
+\lstinputlisting[language=C++,basicstyle=\scriptsize]{../point.cpp}
+
+
+
+\end{document}
+
+
+
+
+
