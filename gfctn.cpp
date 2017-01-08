@@ -95,11 +95,26 @@ Gfctn Gfctn::D0x() const
       for (int i = 1; i < grid->xsize(); i++) { //start at i=1, end at i=n-1
 	xminus = (*grid)(i-1,j).X();
 	xplus = (*grid)(i+1,j).X();
-	tmp.u(i,j) = (u.get(i+1,j)-u.get(i-1,j))/(xplus-xminus);
+	//tmp.u(i,j) = (u.get(i+1,j)-u.get(i-1,j))/(xplus-xminus);
       }
     }
   } else {
     cout << "grid invalid in D0x" << endl;
+  }
+
+  double xi, xj, yi, yj, ui, uj;
+  double h1= 1.0/grid->xsize(); double h2 = 1.0/grid->ysize();
+
+  for (int j = 1; j < grid->ysize(); j++) {
+    for (int i = 1; i < grid->xsize(); i++) { //start at i=1, end at i=n-1
+      xi = ((*grid)(i+1,j).X()-(*grid)(i-1,j).X())/(2.0*h1);
+      xj = ((*grid)(i,j+1).X()-(*grid)(i,j-1).X())/(2.0*h2);
+      yi = ((*grid)(i+1,j).Y()-(*grid)(i-1,j).Y())/(2.0*h1);
+      yj = ((*grid)(i,j+1).Y()-(*grid)(i,j-1).Y())/(2.0*h2);
+      ui = (u.get(i+1,j)-u.get(i-1,j))/(2.0*h1);
+      uj = (u.get(i,j+1)-u.get(i,j-1))/(2.0*h2);
+      tmp.u(i,j) = (ui*yj-uj*yi)/(xi*yj-yi*xj);
+    }
   }
   return tmp;
 }
