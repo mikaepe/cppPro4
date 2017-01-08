@@ -51,7 +51,16 @@
 \maketitle
 
 \subsection*{Task 1: Redesigning the Domain class}
-
+The domain class was taken directly from project 3, with the following modifications. 
+\begin{itemize}
+  \item
+    Functions \texttt{xsize()}, \texttt{ysize()} and \texttt{gridValid()} was added.
+  \item The class was uses \texttt{shared\_ptr} to the boundary curves. 
+  \item
+    The \texttt{writeFile()} function was changed to 
+    \texttt{writeFile(std::string fileName)} to be able to save the 
+    different grid functions with different filenames.
+\end{itemize}
 
 \subsection*{Task 2: The Gfctn class}
 
