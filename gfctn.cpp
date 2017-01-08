@@ -90,7 +90,7 @@ void Gfctn::setFunction(const fctnPtr f)
 
 /* du/dx of grid function u
  * usage: Gfctn DxU = U.D0x();
- * Implementation of derivative from p.13 in slide F_PDEs
+ * Implementation of derivative from slide  F_PDEs
  */
 Gfctn Gfctn::D0x() const {
   Gfctn tmp(grid);

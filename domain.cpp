@@ -49,7 +49,6 @@ Point Domain:: operator()(int i, int j) const
     cout << "invalid index ij" << endl;
     exit(1);
   }
-  //cout << "ij = " << i << "," << j << endl; //TODO remove (was for testing)
   int ind = j+i*(m_+1);
   return Point(x_[ind],y_[ind]);
 }
@@ -84,8 +83,9 @@ void Domain::grid_generation(int n, int m) {
   /* The sides' coordinates are computed once only, i.e. there is
    * 4*(n+1)+4*(m+1) calls to x(s) and y(s). If instead, one would
    * call x(s) and y(s) for each of the grid points there would be
-   * 16*(n+1)*(m+1) calls. Consider MEMORY if n,m are large.
-   * TODO comment on memory...
+   * 16*(n+1)*(m+1) calls. 
+   *
+   * Consider MEMORY if n,m are large.
    */
 
   double *xLo,*xRi,*xTo,*xLe,*yLo,*yRi,*yTo,*yLe; 
@@ -146,8 +146,8 @@ void Domain::grid_generation(int n, int m) {
     }
   }	
 
-  delete[] xLo;
-  delete[] xRi;
+  delete[] xLo;				// Delete temporary
+  delete[] xRi;				// bondary values
   delete[] xTo;
   delete[] xLe;
 

@@ -82,10 +82,8 @@ void Matrix::randomize()
       return;
   }
   //srand(time(0)); gives the same random number every time
-  for (int i = 0; i < n; i++) {
-    for (int j = 0; j < m; j++) { // TODO make single loop
-      a[i*m+j] = rand()%10;
-    }
+  for (int i = 0; i < n*m; i++) {
+      a[i] = rand()%10;
   }
 }
 
