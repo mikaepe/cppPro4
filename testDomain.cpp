@@ -6,7 +6,6 @@
 #include "curvebase.hpp"
 #include "xline.hpp"
 #include "yline.hpp"
-#include "xquad.hpp"
 #include "fxcurve.hpp"
 #include "domain.hpp"
 #include "gfctn.hpp"
@@ -58,8 +57,8 @@ int main(int argc, char *argv[])
   //DyU.print();
   DyU.writeFile("DyOut.bin");
 
-  Gfctn DDxU = U.DD0x();
-  cout << "2nd derivative: " << endl;
+  //Gfctn DDxU = U.DD0x();
+  //cout << "2nd derivative: " << endl;
   //DDxU.print();
 
   Gfctn DDxU2 = U.DD0x2();
