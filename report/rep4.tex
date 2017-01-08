@@ -121,8 +121,107 @@ We investigate the class using the function
 \begin{equation*}
   u(x,y) = \sin (x^2/10^2) \cos (x/10) + y
 \end{equation*}
+Figure 1 shows the function on the domain from project 3.
+\begin{figure}[ht!]
+  \centering
+  \includegraphics[width = 10cm, height = 8cm]{ufctn}
+  \begin{minipage}[t]{100mm}
+    \caption{
+      TODO caption
+    }\label{FIG_jjj}
+  \end{minipage}
+\end{figure}
+
+\subsection*{Derivative w.r.t. $x$}
+
+Figures 2 and 3 shows the derivative w.r.t. $x$ and the result from the implementation.
+Figure 4 show the difference between the true derivative w.r.t $x$ and the implementation.
 
 
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width = 10cm, height = 8cm]{dudx}
+  \begin{minipage}[t]{100mm}
+    \caption{
+      The true derivative $\tfrac{\partial u}{\partial x}$.
+    }\label{FIG_jjj}
+  \end{minipage}
+\end{figure}
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width = 10cm, height = 8cm]{D0x}
+  \begin{minipage}[t]{100mm}
+    \caption{
+      The result of the implementation of the derivative $\tfrac{\partial u}{\partial x}$.
+    }\label{FIG_jjj}
+  \end{minipage}
+\end{figure}
+
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width = 10cm, height = 8cm]{dudxD0x}
+  \begin{minipage}[t]{100mm}
+    \caption{
+      The difference of the true and implemented $x$-derivatives. Since we used
+      one-sided differences on the boundary, the accuracy of the implementation is
+      lower at the boundary. 
+    }\label{FIG_jjj}
+  \end{minipage}
+\end{figure}
+
+
+
+\FloatBarrier
+\subsection*{Derivative w.r.t. $y$}
+Figure 5 shows the true derivative w.r.t. $y$ while figures 6 and 7 show the implemented derivative
+and the difference of the true and implemented derivatives.
+\FloatBarrier
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width = 10cm, height = 8cm]{dudy}
+  \begin{minipage}[t]{100mm}
+    \caption{
+      The true derivative $\tfrac{\partial u}{\partial y}$ is constant and
+      equal to 1.
+    }\label{FIG_jjj}
+  \end{minipage}
+\end{figure}
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width = 10cm, height = 8cm]{D0y}
+  \begin{minipage}[t]{100mm}
+    \caption{
+      The implemented $y$-derivative. It is almost constantly equal to 1.
+    }\label{FIG_jjj}
+  \end{minipage}
+\end{figure}
+
+
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width = 10cm, height = 8cm]{dudyD0y}
+  \begin{minipage}[t]{100mm}
+    \caption{
+      Difference between true and implemented derivatives.
+    }\label{FIG_jjj}
+  \end{minipage}
+\end{figure}
+
+
+
+
+
+
+\FloatBarrier
 \newpage
 \subsection*{Code}
 \subsubsection*{Main}
