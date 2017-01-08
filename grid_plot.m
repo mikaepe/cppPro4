@@ -116,4 +116,3 @@ fclose(fID);
 figure()
 surf(X,Y,laplace')
 title('Laplace operator')
-
