@@ -28,20 +28,6 @@ Point::Point(const Point& Q) :
 Point::~Point()
 {}
 
-// member access function for x
-double Point::X() const
-{
-  return x;
-}
-
-// member access function for y
-double Point::Y() const
-{
-  return y;
-}
-
-
-//	---	---	---	---	---	---
 
 // output operator for ostream
 ostream& operator<<(ostream& os, const Point& P)

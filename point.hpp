@@ -22,8 +22,8 @@ class Point
     ~Point();					// destructor
     
     // Member functions
-    double X() const; // const - obj will not change when called
-    double Y() const;
+    double X() const { return x; } 
+    double Y() const { return y; }
     friend ostream& operator<<(ostream& os, const Point& P);
 };
 
