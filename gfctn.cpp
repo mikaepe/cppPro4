@@ -1,7 +1,6 @@
 // file: gfctn.cpp
 
 #include <iostream>
-#include <cstdlib>	// for exit(1)
 #include "gfctn.hpp"
 
 /* Source file for Gfctn class.
@@ -28,19 +27,20 @@ Gfctn::~Gfctn()
 */
 
 // Operator overloadings ---------------------------------
+
+// Copy assignment
 Gfctn &Gfctn::operator=(const Gfctn &U) {
   u = U.u;
   grid = U.grid;
-  cout << "Copy assignment" << endl;
   return *this;
 }
 
+// Move assignment
 Gfctn &Gfctn::operator=(Gfctn &&U) noexcept {
   u = U.u;
   grid = U.grid;
   U.u = Matrix();
   U.grid = nullptr;
-  cout << "Move assignment" << endl;
   return *this;
 }
 
@@ -72,7 +72,11 @@ Gfctn Gfctn::operator*(const Gfctn &U) const {
 
 // Member functions ---------------------------------------
 
-void Gfctn::setFunction(fctnPtr f) // TODO const??
+/* setFunction
+ * Computes the value of the function f in all grid points and puts in the matrix u
+ *
+ */
+void Gfctn::setFunction(const fctnPtr f)
 {
   for (int j = 0; j <= grid->ysize(); j++) {
     for (int i = 0; i <= grid->xsize(); i++) {
@@ -82,14 +86,6 @@ void Gfctn::setFunction(fctnPtr f) // TODO const??
   }
 }
 
-void Gfctn::print() const {
-  cout << u << endl;
-  // u.print();
-}
-
-void Gfctn::writeFile(string fileName) const {
-  u.writeFile(fileName);
-}
 
 
 /* du/dx of grid function u
@@ -189,100 +185,12 @@ Gfctn Gfctn::D0y() const {
   return tmp;
 }
 
-
-/*
-Gfctn Gfctn::DD0x() const
-{
-  Gfctn tmp(grid);
-  double h;
-  if (grid->gridValid()) {
-    // This implementation actually assumes constant grid size (constant h)
-    for (int j = 0; j <= grid->ysize(); j++) {
-      for (int i = 1; i < grid->xsize(); i++) {
-	h = 0.5*((*grid)(i+1,j).X()-(*grid)(i-1,j).X());
-	tmp.u(i,j) = (u.get(i-1,j) - 2*u.get(i,j) + u.get(i+1,j))/(h*h);
-      }
-    }
-  } else {
-    cout << "grid invalid in DD0x" << endl;
-  }
-  return tmp;
-}
-*/
-
-
-/* Second derivative of u w.r.t. x.
- * Implementation from p.13-14 slide F_PDEs
- */
-Gfctn Gfctn::DD0x2() const {
-  Gfctn tmp(grid);
-  tmp = D0x();
-  tmp = tmp.D0x();
-  /*
-double xp2,xp1,x,xm1,xm2;	// x_{i+2,j},x_{i+1,j},...etc
-if (grid->gridValid()) {
-  for (int j = 0; j <= grid->ysize(); j++) {
-    for (int i = 2; i <= grid->xsize()-2; i++) {
-xp2 = (*grid)(i+2,j).X();
-xp1 = (*grid)(i+1,j).X();
-x = (*grid)(i,j).X();
-xm1 = (*grid)(i-1,j).X();
-xm2 = (*grid)(i-2,j).X();
-
-tmp.u(i,j) = (1.0/(xp1-xm1))*(
-    (u.get(i+2,j)-u.get(i,j))/(xp2 - x) -
-    (u.get(i,j) - u.get(i-2,j))/(x-xm2));
-    }
-  }
-} else {
-  cout << "grid invalid in DD0x" << endl;
-}*/
-  return tmp;
-}
-
-
-/* Second derivative of u w.r.t. y.
- */
-Gfctn Gfctn::DD0y2() const {
-  Gfctn tmp(grid);
-  double yp2, yp1, y, ym1, ym2;  // y_{i,j+2},y_{i,j+1},...etc
-  if (grid->gridValid()) {
-    for (int i = 0; i <= grid->xsize(); i++) {
-      for (int j = 2; j <= grid->ysize() - 2; j++) {
-        yp2 = (*grid)(i, j + 2).Y();
-        yp1 = (*grid)(i, j + 1).Y();
-        y = (*grid)(i, j).Y();
-        ym1 = (*grid)(i, j - 1).Y();
-        ym2 = (*grid)(i, j - 2).Y();
-
-        tmp.u(i, j) = (1.0 / (yp1 - ym1)) * (
-          (u.get(i, j + 2) - u.get(i, j)) / (yp2 - y) -
-          (u.get(i, j) - u.get(i, j - 2)) / (y - ym2));
-      }
-    }
-  } else {
-    cout << "grid invalid in DD0x" << endl;
-  }
-  return tmp;
-}
-
-
 /* Laplacian of grid function
  */
 Gfctn Gfctn::laplace() const {
   Gfctn laplace = D0x().D0x() + D0y().D0y();
   return laplace;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

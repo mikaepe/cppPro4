@@ -2,9 +2,6 @@
 
 #include <iostream>
 #include <iomanip>	// for setprecision in operator<<
-#include <cstdlib>	// for exit()
-#include <ctime>	// for rand() and srand()
-#include <cmath>
 #include "matrix.hpp"
 
 /* Source file for Matrix class.
@@ -119,7 +116,6 @@ void Matrix::writeFile(string fileName) const{
  */
 Matrix &Matrix::operator=(const Matrix &M)
 {
-    cout << "copy assignment matrix" << endl;
   if (this == &M) {
     return *this;
   }
@@ -142,7 +138,6 @@ Matrix &Matrix::operator=(const Matrix &M)
 }
 
 Matrix &Matrix::operator=(Matrix &&M) noexcept{
-    cout << "move assignment matrix" << endl;
     if (this == &M) {
         return *this;
     }

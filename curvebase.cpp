@@ -55,7 +55,6 @@ double Curvebase::integrate(double a, double b) const{
       tolI *= 0.5;
     }
   }
-  return I;
 }
 
 
