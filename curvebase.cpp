@@ -4,10 +4,6 @@
 #include <iostream>
 #include "curvebase.hpp"
 
-
-Curvebase::Curvebase() {}; // Default constructor
-
-
 /* Integrate , i2Simpson, iSimpson all taken
  * directly from project 1.
  */

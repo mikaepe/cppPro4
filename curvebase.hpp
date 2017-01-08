@@ -29,13 +29,10 @@ protected:
   double integrate(double a, double b) const;
 
 public:
-  Curvebase();      //default constructor
+  Curvebase(){};      //default constructor
+  virtual ~Curvebase(){}; // the destructor of abstract base class should always be virtual
   virtual double x(double s) const;  //parametrized by normalized arc length
   virtual double y(double s) const;  //parametrized by normalized arc length
-
-  // TODO from slides 6 F_Inheritance.pdf page 30:
-  // the destructor of abstract base class should always be virtual
-  // virtual ~Curvebase();
 
 };
 
