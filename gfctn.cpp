@@ -15,7 +15,7 @@
 Gfctn::Gfctn(shared_ptr<Domain> grid_)
   : u(grid_->xsize() + 1, grid_->ysize() + 1), grid(grid_) {}
 
-Gfctn::Gfctn(const Gfctn& U)
+Gfctn::Gfctn(const Gfctn &U)
   : u(U.u), grid(U.grid) {}
 
 // Destructor ---------------------------------------------
@@ -28,25 +28,26 @@ Gfctn::~Gfctn()
 */
 
 // Operator overloadings ---------------------------------
-Gfctn& Gfctn::operator=(const Gfctn& U){
-    u = U.u;
-    grid = U.grid;
-    cout << "Copy assignment" << endl;
+Gfctn &Gfctn::operator=(const Gfctn &U) {
+  u = U.u;
+  grid = U.grid;
+  cout << "Copy assignment" << endl;
+  return *this;
 }
 
-Gfctn& Gfctn::operator=(Gfctn&& U) noexcept {
-    u = U.u;
-    grid = U.grid;
-    U.u = NULL;
-    U.grid = nullptr;
-    cout << "Move assignment" << endl;
+Gfctn &Gfctn::operator=(Gfctn &&U) noexcept {
+  u = U.u;
+  grid = U.grid;
+  U.u = NULL;
+  U.grid = nullptr;
+  cout << "Move assignment" << endl;
+  return *this;
 }
 
-Gfctn Gfctn::operator+(const Gfctn& U) const
-{
+Gfctn Gfctn::operator+(const Gfctn &U) const {
   if (grid == U.grid) { // Defined on same grid?
     Gfctn tmp = Gfctn(grid);
-    tmp.u = u + U.u;	// Matrix operator +()
+    tmp.u = u + U.u;  // Matrix operator +()
     return tmp;
   } else {
     std::cout << "error: different grids" << std::endl;
@@ -54,13 +55,12 @@ Gfctn Gfctn::operator+(const Gfctn& U) const
   }
 }
 
-Gfctn Gfctn::operator*(const Gfctn& U) const
-{
+Gfctn Gfctn::operator*(const Gfctn &U) const {
   if (grid == U.grid) {
     Gfctn tmp = Gfctn(grid);
     for (int j = 0; j < grid->ysize(); j++) {
       for (int i = 0; i < grid->xsize(); i++) {
-	tmp.u(i,j) = u.get(i,j)*U.u.get(i,j);
+        tmp.u(i, j) = u.get(i, j) * U.u.get(i, j);
       }
     }
     return tmp;
@@ -74,33 +74,29 @@ Gfctn Gfctn::operator*(const Gfctn& U) const
 
 void Gfctn::setFunction(fctnPtr f) // TODO const??
 {
-  for(int j = 0; j <= grid->ysize(); j++) {
-    for(int i = 0; i <= grid->xsize(); i++) {
-      u(i,j) = f((*grid)(i,j));
+  for (int j = 0; j <= grid->ysize(); j++) {
+    for (int i = 0; i <= grid->xsize(); i++) {
+      u(i, j) = f((*grid)(i, j));
       //cout << (*grid)(i,j) << endl;
     }
   }
 }
 
-void Gfctn::print() const 
-{
+void Gfctn::print() const {
   cout << u << endl;
   // u.print();
 }
 
-void Gfctn::writeFile(string fileName) const
-{
-    u.writeFile(fileName);
+void Gfctn::writeFile(string fileName) const {
+  u.writeFile(fileName);
 }
-
 
 
 /* du/dx of grid function u
  * usage: Gfctn DxU = U.D0x();
  * Implementation of derivative from p.13 in slide F_PDEs
  */
-Gfctn Gfctn::D0x() const
-{
+Gfctn Gfctn::D0x() const {
   if (grid->gridValid()) {
     Gfctn tmp(grid);
     double xi, xj, yi, yj, ui, uj;
@@ -140,7 +136,7 @@ Gfctn Gfctn::D0x() const
     }
     return tmp;
   } else {
-      cout << "grid invalid in D0x" << endl;
+    cout << "grid invalid in D0x" << endl;
   }
 }
 
@@ -148,8 +144,7 @@ Gfctn Gfctn::D0x() const
 /* du/dy of grid function u
  * Analogous to above
  */
-Gfctn Gfctn::D0y() const
-{
+Gfctn Gfctn::D0y() const {
   if (grid->gridValid()) {
     Gfctn tmp(grid);
     double xi, xj, yi, yj, ui, uj;
@@ -184,7 +179,7 @@ Gfctn Gfctn::D0y() const
           yj = ((*grid)(i, j + 1).Y() - (*grid)(i, j - 1).Y()) / (2.0 * h2);
           uj = (u.get(i, j + 1) - u.get(i, j - 1)) / (2.0 * h2);
         }
-        tmp.u(i, j) = (- ui * xj + uj * xi) / (xi * yj - yi * xj);
+        tmp.u(i, j) = (-ui * xj + uj * xi) / (xi * yj - yi * xj);
       }
     }
     return tmp;
@@ -218,52 +213,50 @@ Gfctn Gfctn::DD0x() const
 /* Second derivative of u w.r.t. x.
  * Implementation from p.13-14 slide F_PDEs
  */
-Gfctn Gfctn::DD0x2() const
-{
+Gfctn Gfctn::DD0x2() const {
   Gfctn tmp(grid);
   tmp = D0x();
   tmp = tmp.D0x();
-    /*
-  double xp2,xp1,x,xm1,xm2;	// x_{i+2,j},x_{i+1,j},...etc
-  if (grid->gridValid()) {
-    for (int j = 0; j <= grid->ysize(); j++) {
-      for (int i = 2; i <= grid->xsize()-2; i++) {
-	xp2 = (*grid)(i+2,j).X();
-	xp1 = (*grid)(i+1,j).X();
-	x = (*grid)(i,j).X();
-	xm1 = (*grid)(i-1,j).X();
-	xm2 = (*grid)(i-2,j).X();
+  /*
+double xp2,xp1,x,xm1,xm2;	// x_{i+2,j},x_{i+1,j},...etc
+if (grid->gridValid()) {
+  for (int j = 0; j <= grid->ysize(); j++) {
+    for (int i = 2; i <= grid->xsize()-2; i++) {
+xp2 = (*grid)(i+2,j).X();
+xp1 = (*grid)(i+1,j).X();
+x = (*grid)(i,j).X();
+xm1 = (*grid)(i-1,j).X();
+xm2 = (*grid)(i-2,j).X();
 
-	tmp.u(i,j) = (1.0/(xp1-xm1))*(
-	    (u.get(i+2,j)-u.get(i,j))/(xp2 - x) - 
-	    (u.get(i,j) - u.get(i-2,j))/(x-xm2));
-      }
+tmp.u(i,j) = (1.0/(xp1-xm1))*(
+    (u.get(i+2,j)-u.get(i,j))/(xp2 - x) -
+    (u.get(i,j) - u.get(i-2,j))/(x-xm2));
     }
-  } else {
-    cout << "grid invalid in DD0x" << endl;
-  }*/
+  }
+} else {
+  cout << "grid invalid in DD0x" << endl;
+}*/
   return tmp;
 }
 
 
 /* Second derivative of u w.r.t. y.
  */
-Gfctn Gfctn::DD0y2() const
-{
+Gfctn Gfctn::DD0y2() const {
   Gfctn tmp(grid);
-  double yp2,yp1,y,ym1,ym2;	// y_{i,j+2},y_{i,j+1},...etc
+  double yp2, yp1, y, ym1, ym2;  // y_{i,j+2},y_{i,j+1},...etc
   if (grid->gridValid()) {
     for (int i = 0; i <= grid->xsize(); i++) {
-      for (int j = 2; j <= grid->ysize()-2; j++) {
-	yp2 = (*grid)(i,j+2).Y();
-	yp1 = (*grid)(i,j+1).Y();
-	y = (*grid)(i,j).Y();
-	ym1 = (*grid)(i,j-1).Y();
-	ym2 = (*grid)(i,j-2).Y();
+      for (int j = 2; j <= grid->ysize() - 2; j++) {
+        yp2 = (*grid)(i, j + 2).Y();
+        yp1 = (*grid)(i, j + 1).Y();
+        y = (*grid)(i, j).Y();
+        ym1 = (*grid)(i, j - 1).Y();
+        ym2 = (*grid)(i, j - 2).Y();
 
-	tmp.u(i,j) = (1.0/(yp1-ym1))*(
-	    (u.get(i,j+2)-u.get(i,j))/(yp2 - y) - 
-	    (u.get(i,j) - u.get(i,j-2))/(y-ym2));
+        tmp.u(i, j) = (1.0 / (yp1 - ym1)) * (
+          (u.get(i, j + 2) - u.get(i, j)) / (yp2 - y) -
+          (u.get(i, j) - u.get(i, j - 2)) / (y - ym2));
       }
     }
   } else {
@@ -275,8 +268,7 @@ Gfctn Gfctn::DD0y2() const
 
 /* Laplacian of grid function
  */
-Gfctn Gfctn::laplace() const
-{
+Gfctn Gfctn::laplace() const {
   Gfctn laplace = D0x().D0x() + D0y().D0y();
   return laplace;
 }
