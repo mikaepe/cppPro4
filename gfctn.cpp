@@ -3,10 +3,9 @@
 #include <iostream>
 #include "gfctn.hpp"
 
-/* Source file for Gfctn class.
+/* Source file for Gfctn class used for grid functions.
  * See gfctn.hpp for declarations.
- * 
- * TODO more comments
+ *
  */
 
 // Constructors -------------------------------------------
@@ -16,15 +15,6 @@ Gfctn::Gfctn(shared_ptr<Domain> grid_)
 
 Gfctn::Gfctn(const Gfctn &U)
   : u(U.u), grid(U.grid) {}
-
-// Destructor ---------------------------------------------
-
-/*
-Gfctn::~Gfctn()
-{
-  // TODO implement destructor
-}
-*/
 
 // Operator overloadings ---------------------------------
 
@@ -90,7 +80,7 @@ void Gfctn::setFunction(const fctnPtr f)
 
 /* du/dx of grid function u
  * usage: Gfctn DxU = U.D0x();
- * Implementation of derivative from slide  F_PDEs
+ * Implementation of derivative from slide F_PDEs
  */
 Gfctn Gfctn::D0x() const {
   Gfctn tmp(grid);
