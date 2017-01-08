@@ -25,6 +25,7 @@ class Gfctn
     // OPERATORS
     Gfctn& operator=(const Gfctn& U);	// TODO implementerad? Behövs inte?
     Gfctn& operator=(Gfctn&& U) noexcept;
+
     Gfctn operator+(const Gfctn& U) const;
     Gfctn operator*(const Gfctn& U) const;
 

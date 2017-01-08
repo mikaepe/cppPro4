@@ -55,7 +55,7 @@ The domain class was taken directly from project 3, with the following modificat
 \begin{itemize}
   \item
     Functions \texttt{xsize()}, \texttt{ysize()} and \texttt{gridValid()} was added.
-  \item The class was uses \texttt{shared\_ptr} to the boundary curves. 
+  \item The class uses \texttt{shared\_ptr} to the boundary curves. 
   \item
     The \texttt{writeFile()} function was changed to 
     \texttt{writeFile(std::string fileName)} to be able to save the 
@@ -63,6 +63,40 @@ The domain class was taken directly from project 3, with the following modificat
 \end{itemize}
 
 \subsection*{Task 2: The Gfctn class}
+The class for gridfunctions \texttt{class Gfctn} has the following data members.
+\begin{itemize}
+  \item
+    A matrix \texttt{u} to store the grid function values.
+  \item
+    A \texttt{shared\_ptr} to a \texttt{Domain} object called \texttt{grid}.
+\end{itemize}
+The class has a the following constructors.
+\begin{itemize}
+  \item \texttt{Gfctn(shared\_ptr<Domain> grid)} which initializes the grid function with
+    the matrix \texttt{u} being the zero matrix.
+  \item \texttt{Gfctn(const Gfctn\& U)}, a copy constructor.
+\end{itemize}
+Overloaded operators are provided for adding and multiplying grid functions (\texttt{+} and 
+\texttt{*}).
+The following member functions are implemented.
+\begin{itemize}
+  \item
+    \texttt{void setFunction(fctnPtr f)} which sets the gridfunction values to those
+    defined by the function \texttt{f}. This function needs to take \texttt{Point}
+    objects as argument.
+  \item
+    \texttt{void print()} which prints the matrix \texttt{u}.
+    This is useful for testing on small grids only.
+  \item
+    \texttt{void writeFile(std::string fileName) const} which saves the grid function
+    values to a binary file, \texttt{fileName.bin}.
+\end{itemize}
+In addition to those functions listed above, the class has functions to compute 
+the approximations to $\tfrac{\partial u}{\partial x}$, $\tfrac{\partial u}{\partial y}$,
+$\tfrac{\partial^2 u}{\partial x^2}$ and $\tfrac{\partial^2 u}{\partial y^2}$. Finally the class has a function for computing the Laplacian of the grid function, $\Delta u = \tfrac{\partial^2 u}{
+  \partial x^2} + \tfrac{\partial^2 u}{\partial y^2}$.
+    
+
 
 
 \subsection*{Task 3: Discretizing a function and computing differential operators}
