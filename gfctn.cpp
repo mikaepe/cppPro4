@@ -97,8 +97,8 @@ void Gfctn::writeFile(string fileName) const {
  * Implementation of derivative from p.13 in slide F_PDEs
  */
 Gfctn Gfctn::D0x() const {
+  Gfctn tmp(grid);
   if (grid->gridValid()) {
-    Gfctn tmp(grid);
     double xi, xj, yi, yj, ui, uj;
     double h1 = 1.0 / grid->xsize();
     double h2 = 1.0 / grid->ysize();
@@ -134,10 +134,11 @@ Gfctn Gfctn::D0x() const {
         tmp.u(i, j) = (ui * yj - uj * yi) / (xi * yj - yi * xj);
       }
     }
-    return tmp;
   } else {
     cout << "grid invalid in D0x" << endl;
+
   }
+  return tmp;
 }
 
 
@@ -145,8 +146,8 @@ Gfctn Gfctn::D0x() const {
  * Analogous to above
  */
 Gfctn Gfctn::D0y() const {
+  Gfctn tmp(grid);
   if (grid->gridValid()) {
-    Gfctn tmp(grid);
     double xi, xj, yi, yj, ui, uj;
     double h1 = 1.0 / grid->xsize();
     double h2 = 1.0 / grid->ysize();
@@ -182,10 +183,10 @@ Gfctn Gfctn::D0y() const {
         tmp.u(i, j) = (-ui * xj + uj * xi) / (xi * yj - yi * xj);
       }
     }
-    return tmp;
   } else {
     cout << "grid invalid in D0y" << endl;
   }
+  return tmp;
 }
 
 
