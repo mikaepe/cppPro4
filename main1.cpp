@@ -1,4 +1,4 @@
-// file: testDomain.cpp
+// file: main1.cpp
 
 #include <iostream>
 #include <memory>
@@ -19,26 +19,32 @@ inline double f(Point p) {
 int main(int argc, char *argv[])
 {
 
+  // the boundary curves to the domain
   shared_ptr<fxCurve> a = make_shared<fxCurve>(-10.0,5.0);
   shared_ptr<yLine> b = make_shared<yLine>(0.0,3.0,5.0);
   shared_ptr<xLine> c = make_shared<xLine>(-10.0,5.0,3.0);
   shared_ptr<yLine> d = make_shared<yLine>(0.0,3.0,-10.0);
 
+  // generating a grid on the domain and writing it to bin file
   shared_ptr<Domain> grid = make_shared<Domain>(a,b,c,d);
   grid->grid_generation(50,20);
   grid->writeFile("gridOut.bin");
+
+  // grid function using function f
   Gfctn U = Gfctn(grid);
   U.setFunction(&f);
-  //U.print();
-  
+
+  // derivative wrt x
   Gfctn DxU = U.D0x();                
   cout << "derivative x" << endl;
   DxU.writeFile("DxOut.bin");
 
+  // derivative wrt y
   Gfctn DyU = U.D0y();
   cout << "derivative y" << endl;
   DyU.writeFile("DyOut.bin");
-  
+
+  // laplace operator
   Gfctn Laplace = U.laplace();
   cout << "Laplace" << endl;
   Laplace.writeFile("laplaceOut.bin");

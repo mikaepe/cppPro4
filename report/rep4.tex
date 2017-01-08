@@ -91,9 +91,6 @@ The following member functions are implemented.
     defined by the function \texttt{f}. This function needs to take \texttt{Point}
     objects as argument.
   \item
-    \texttt{void print()} which prints the matrix \texttt{u}.
-    This is useful for testing on small grids only.
-  \item
     \texttt{void writeFile(std::string fileName) const} which saves the grid function
     values to a binary file, \texttt{fileName.bin}.
 \end{itemize}
@@ -113,7 +110,8 @@ $$\det J = \frac{\partial x}{\partial \xi} \frac{\partial y}{\partial \eta} - \f
 
 Finally the class has a function for computing the Laplacian of the grid function, 
 $\Delta u = \tfrac{\partial^2 u}{\partial x^2} + \tfrac{\partial^2 u}{\partial y^2}$. This function just applies the approximations of the derivatives to the derivatives $\tfrac{\partial u}{\partial x}$ and $\tfrac{\partial u}{\partial y}$ themselves to approximate the second derivatives. 
-These functions are
+
+The functions for these differential operators are
 \begin{itemize}
   \item
     \texttt{Gfctn D0x() const}
@@ -256,7 +254,6 @@ and the difference of the true and implemented derivatives.
 \lstinputlisting[language=C++,basicstyle=\scriptsize]{../curvebase.hpp}
 \lstinputlisting[language=C++,basicstyle=\scriptsize]{../curvebase.cpp}
 \subsubsection*{The derived classes from the Curvebase Class}
-\texttt{yline}).
 \lstinputlisting[language=C++,basicstyle=\scriptsize]{../xline.hpp}
 %\lstinputlisting[language=C++,basicstyle=\scriptsize]{../xline.cpp}
 \lstinputlisting[language=C++,basicstyle=\scriptsize]{../yline.hpp}

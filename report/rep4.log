@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.16)  8 JAN 2017 19:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.11.16)  8 JAN 2017 20:05
 entering extended mode
 **rep4.tex
 ("C:\Users\Hanna\Documents\C++Projects\Projects SF2565\cppPro4\report\rep4.tex"
@@ -457,14 +457,14 @@ Package epstopdf Info: Source file: <ufctn.eps>
 (epstopdf)                    size: 35771 bytes
 (epstopdf)             Command: <epstopdf --outfile=ufctn-eps-converted-to.pdf 
 ufctn.eps>
-(epstopdf)             \includegraphics on input line 138.
+(epstopdf)             \includegraphics on input line 136.
 Package epstopdf Info: Output file is already uptodate.
 
-<ufctn-eps-converted-to.pdf, id=12, 355.3275pt x 287.0725pt>
+<ufctn-eps-converted-to.pdf, id=17, 355.3275pt x 287.0725pt>
 File: ufctn-eps-converted-to.pdf Graphic file (type pdf)
 
 <use ufctn-eps-converted-to.pdf>
-Package pdftex.def Info: ufctn-eps-converted-to.pdf used on input line 138.
+Package pdftex.def Info: ufctn-eps-converted-to.pdf used on input line 136.
 (pdftex.def)             Requested size: 284.53346pt x 227.62581pt.
 Package epstopdf Info: Source file: <dudx.eps>
 (epstopdf)                    date: 2017-01-08 17:26:19
@@ -474,14 +474,14 @@ Package epstopdf Info: Source file: <dudx.eps>
 (epstopdf)                    size: 35734 bytes
 (epstopdf)             Command: <epstopdf --outfile=dudx-eps-converted-to.pdf d
 udx.eps>
-(epstopdf)             \includegraphics on input line 155.
+(epstopdf)             \includegraphics on input line 153.
 Package epstopdf Info: Output file is already uptodate.
 
-<dudx-eps-converted-to.pdf, id=13, 374.39874pt x 287.0725pt>
+<dudx-eps-converted-to.pdf, id=18, 374.39874pt x 287.0725pt>
 File: dudx-eps-converted-to.pdf Graphic file (type pdf)
 
 <use dudx-eps-converted-to.pdf>
-Package pdftex.def Info: dudx-eps-converted-to.pdf used on input line 155.
+Package pdftex.def Info: dudx-eps-converted-to.pdf used on input line 153.
 (pdftex.def)             Requested size: 284.54028pt x 227.62581pt.
 Package epstopdf Info: Source file: <D0x.eps>
 (epstopdf)                    date: 2017-01-08 17:26:19
@@ -491,14 +491,14 @@ Package epstopdf Info: Source file: <D0x.eps>
 (epstopdf)                    size: 36163 bytes
 (epstopdf)             Command: <epstopdf --outfile=D0x-eps-converted-to.pdf D0
 x.eps>
-(epstopdf)             \includegraphics on input line 166.
+(epstopdf)             \includegraphics on input line 164.
 Package epstopdf Info: Output file is already uptodate.
 
-<D0x-eps-converted-to.pdf, id=14, 374.39874pt x 287.0725pt>
+<D0x-eps-converted-to.pdf, id=19, 374.39874pt x 287.0725pt>
 File: D0x-eps-converted-to.pdf Graphic file (type pdf)
 
 <use D0x-eps-converted-to.pdf>
-Package pdftex.def Info: D0x-eps-converted-to.pdf used on input line 166.
+Package pdftex.def Info: D0x-eps-converted-to.pdf used on input line 164.
 (pdftex.def)             Requested size: 284.54028pt x 227.62581pt.
 Package epstopdf Info: Source file: <dudxD0x.eps>
 (epstopdf)                    date: 2017-01-08 17:26:19
@@ -508,17 +508,17 @@ Package epstopdf Info: Source file: <dudxD0x.eps>
 (epstopdf)                    size: 35400 bytes
 (epstopdf)             Command: <epstopdf --outfile=dudxD0x-eps-converted-to.pd
 f dudxD0x.eps>
-(epstopdf)             \includegraphics on input line 178.
+(epstopdf)             \includegraphics on input line 176.
 Package epstopdf Info: Output file is already uptodate.
 
-<dudxD0x-eps-converted-to.pdf, id=15, 372.39125pt x 287.0725pt>
+<dudxD0x-eps-converted-to.pdf, id=20, 372.39125pt x 287.0725pt>
 File: dudxD0x-eps-converted-to.pdf Graphic file (type pdf)
 
 <use dudxD0x-eps-converted-to.pdf>
-Package pdftex.def Info: dudxD0x-eps-converted-to.pdf used on input line 178.
+Package pdftex.def Info: dudxD0x-eps-converted-to.pdf used on input line 176.
 (pdftex.def)             Requested size: 284.53745pt x 227.62581pt.
 
-Underfull \hbox (badness 1184) in paragraph at lines 184--184
+Underfull \hbox (badness 1184) in paragraph at lines 182--182
 []\OT1/cmr/m/n/10 Figure 4: The dif-fer-ence of the true and im-ple-mented $\OM
 L/cmm/m/it/10 x$\OT1/cmr/m/n/10 -
  []
@@ -537,13 +537,13 @@ Package epstopdf Info: Source file: <dudy.eps>
 (epstopdf)                    size: 30168 bytes
 (epstopdf)             Command: <epstopdf --outfile=dudy-eps-converted-to.pdf d
 udy.eps>
-(epstopdf)             \includegraphics on input line 198.
+(epstopdf)             \includegraphics on input line 196.
 Package epstopdf Info: Output file is already uptodate.
  <dudy-eps-converted-to.pdf, id=68, 364.36125pt x 287.0725pt>
 File: dudy-eps-converted-to.pdf Graphic file (type pdf)
 
 <use dudy-eps-converted-to.pdf>
-Package pdftex.def Info: dudy-eps-converted-to.pdf used on input line 198.
+Package pdftex.def Info: dudy-eps-converted-to.pdf used on input line 196.
 (pdftex.def)             Requested size: 284.53976pt x 227.62581pt.
 Package epstopdf Info: Source file: <D0y.eps>
 (epstopdf)                    date: 2017-01-08 17:26:19
@@ -553,14 +553,14 @@ Package epstopdf Info: Source file: <D0y.eps>
 (epstopdf)                    size: 36471 bytes
 (epstopdf)             Command: <epstopdf --outfile=D0y-eps-converted-to.pdf D0
 y.eps>
-(epstopdf)             \includegraphics on input line 210.
+(epstopdf)             \includegraphics on input line 208.
 Package epstopdf Info: Output file is already uptodate.
 
 <D0y-eps-converted-to.pdf, id=69, 388.45125pt x 268.00125pt>
 File: D0y-eps-converted-to.pdf Graphic file (type pdf)
 
 <use D0y-eps-converted-to.pdf>
-Package pdftex.def Info: D0y-eps-converted-to.pdf used on input line 210.
+Package pdftex.def Info: D0y-eps-converted-to.pdf used on input line 208.
 (pdftex.def)             Requested size: 284.53319pt x 227.6222pt.
 Package epstopdf Info: Source file: <dudyD0y.eps>
 (epstopdf)                    date: 2017-01-08 17:26:19
@@ -570,14 +570,14 @@ Package epstopdf Info: Source file: <dudyD0y.eps>
 (epstopdf)                    size: 37902 bytes
 (epstopdf)             Command: <epstopdf --outfile=dudyD0y-eps-converted-to.pd
 f dudyD0y.eps>
-(epstopdf)             \includegraphics on input line 222.
+(epstopdf)             \includegraphics on input line 220.
 Package epstopdf Info: Output file is already uptodate.
 
 <dudyD0y-eps-converted-to.pdf, id=70, 378.41376pt x 304.13625pt>
 File: dudyD0y-eps-converted-to.pdf Graphic file (type pdf)
 
 <use dudyD0y-eps-converted-to.pdf>
-Package pdftex.def Info: dudyD0y-eps-converted-to.pdf used on input line 222.
+Package pdftex.def Info: dudyD0y-eps-converted-to.pdf used on input line 220.
 (pdftex.def)             Requested size: 284.53137pt x 227.62827pt.
  [5
 
@@ -593,14 +593,14 @@ Package epstopdf Info: Source file: <Laplace.eps>
 (epstopdf)                    size: 35774 bytes
 (epstopdf)             Command: <epstopdf --outfile=Laplace-eps-converted-to.pd
 f Laplace.eps>
-(epstopdf)             \includegraphics on input line 236.
+(epstopdf)             \includegraphics on input line 234.
 Package epstopdf Info: Output file is already uptodate.
 
 <Laplace-eps-converted-to.pdf, id=105, 380.42125pt x 304.13625pt>
 File: Laplace-eps-converted-to.pdf Graphic file (type pdf)
 
 <use Laplace-eps-converted-to.pdf>
-Package pdftex.def Info: Laplace-eps-converted-to.pdf used on input line 236.
+Package pdftex.def Info: Laplace-eps-converted-to.pdf used on input line 234.
 (pdftex.def)             Requested size: 284.53738pt x 227.62827pt.
  [7
 
@@ -623,8 +623,12 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <7> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 15.
 )
 ("C:\Users\Hanna\Documents\C++Projects\Projects SF2565\cppPro4\curvebase.hpp"
-[8])
-("C:\Users\Hanna\Documents\C++Projects\Projects SF2565\cppPro4\curvebase.cpp"
+[8]
+Overfull \hbox (36.94955pt too wide) in paragraph at lines 33--34
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) ("C:\Users\Hanna\Documents\C++Projects\Projects SF2565\cppPro4\curvebase.cpp"
 [9]) ("C:\Users\Hanna\Documents\C++Projects\Projects SF2565\cppPro4\xline.hpp"
 [10]) ("C:\Users\Hanna\Documents\C++Projects\Projects SF2565\cppPro4\yline.hpp"
 ) ("C:\Users\Hanna\Documents\C++Projects\Projects SF2565\cppPro4\fxcurve.hpp")
@@ -640,8 +644,8 @@ Overfull \hbox (41.73294pt too wide) in paragraph at lines 39--40
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[12]) ("C:\Users\Hanna\Documents\C++Projects\Projects SF2565\cppPro4\domain.cpp
-"
+) [12] ("C:\Users\Hanna\Documents\C++Projects\Projects SF2565\cppPro4\domain.cp
+p"
 LaTeX Font Info:    Font shape `OML/cmr/m/it' in size <7> not available
 (Font)              Font shape `OML/cmm/m/it' tried instead on input line 38.
  [13] [14])
@@ -652,9 +656,6 @@ Overfull \hbox (84.78342pt too wide) in paragraph at lines 34--35
  []
 
 ) ("C:\Users\Hanna\Documents\C++Projects\Projects SF2565\cppPro4\gfctn.cpp"
-LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <7> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 24.
-
 [16] [17])
 ("C:\Users\Hanna\Documents\C++Projects\Projects SF2565\cppPro4\matrix.hpp"
 [18]) ("C:\Users\Hanna\Documents\C++Projects\Projects SF2565\cppPro4\matrix.cpp
@@ -669,10 +670,10 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5979 strings out of 493921
- 81231 string characters out of 3147281
- 216452 words of memory out of 3000000
- 9125 multiletter control sequences out of 15000+200000
+ 5978 strings out of 493921
+ 81217 string characters out of 3147281
+ 217452 words of memory out of 3000000
+ 9124 multiletter control sequences out of 15000+200000
  10297 words of font info for 37 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  42i,12n,58p,307b,1719s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -694,7 +695,7 @@ nts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr
 :/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program
  Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti7.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on rep4.pdf (23 pages, 561855 bytes).
+Output written on rep4.pdf (23 pages, 561873 bytes).
 PDF statistics:
  235 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
