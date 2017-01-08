@@ -14,6 +14,7 @@ Z = sin(0.01*X.^2).*cos(0.1*X) + Y;
 
 surf(X,Y,Z);
 title('The function u')
+%print -depsc 'ufctn'
 
 % -------------------------------------------------------
 % dudx
@@ -29,19 +30,21 @@ fclose(fID);
 figure
 surf(X,Y,Dx')
 title('D0x (implemented dudx)')
+%print -depsc 'D0x'
 
 % True x derivative
 ZDX = 0.02.*X.*cos(0.01*X.^2).*cos(0.1*X) - 0.1.*sin(0.01*X.^2).*sin(0.1*X);
 figure
 surf(X,Y,ZDX)
 title('dudx (true)')
+%print -depsc 'dudx'
 
 % Difference between our dx and true
 figure()
 diff = ZDX-Dx';
 surf(X,Y,diff)
 title('dudx - D0x (true - implemented)')
-
+%print -depsc 'dudxD0x'
 
 % -------------------------------------------------------
 % dudy
@@ -57,18 +60,21 @@ fclose(fID);
 figure()
 surf(X,Y,Dy')
 title('D0y (implemented dudy)')
+%print -depsc 'D0y'
 
 % True y derivative
 ZDY = ones(size(Dy'));
 figure;
 surf(X,Y,ZDY)
 title('dudy (true)')
+%print -depsc 'dudy'
 
 % Difference betw our dy and true
 figure;
 diff = ZDY-Dy';
 surf(X,Y,diff);
 title('dudy-D0y (true - implemented)')
+%print -depsc 'dudyD0y'
 
 
 % -------------------------------------------------------
