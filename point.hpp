@@ -23,6 +23,7 @@ class Point
     ~Point();					// destructor
 
     // Overloadings
+    /*
     Point& operator=(const Point& Q);		// copy-assignment. P = Q;
     const Point operator-() const;		// P = -Q;
     const Point& operator-=(const Point& Q);	// P -= Q;
@@ -31,6 +32,7 @@ class Point
     // Other member functions
     void zero();
     void print();
+    */
     double X() const; // const - obj will not change when called
     double Y() const;
     friend ostream& operator<<(ostream& os, const Point& P);

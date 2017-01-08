@@ -39,6 +39,7 @@ Point::~Point()
 
 // OPERATOR OVERLOADINGS	---	---	---	---	---
 
+/*
 // copy-assignment
 Point& Point:: operator=(const Point& Q)
 {
@@ -82,6 +83,7 @@ void Point::print()
 {
   cout << "[" << x << "," << y << "]" << endl;
 }
+*/
 
 // member access function for x
 double Point::X() const
