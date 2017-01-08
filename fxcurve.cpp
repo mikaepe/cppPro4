@@ -15,8 +15,8 @@ fxCurve::fxCurve(double xx0, double xx1) {
 fxCurve::~fxCurve() {}
 
 // Curve parametrized in user parameter p
-double fxCurve::xp(double p) { return p; }
-double fxCurve::yp(double p) {
+double fxCurve::xp(double p) const { return p; }
+double fxCurve::yp(double p) const {
   if (p < -3.0) {
     return 0.5/(1.0 + exp(-3.0*(p + 6.0)));
   } else {
@@ -25,8 +25,8 @@ double fxCurve::yp(double p) {
 }
 
 // Derivatives w.r.t. the user parameter p
-double fxCurve::dxp(double p) { return 1.0; }
-double fxCurve::dyp(double p) {
+double fxCurve::dxp(double p) const { return 1.0; }
+double fxCurve::dyp(double p) const {
   if (p < -3.0) {
     //return 6.0*exp(-3.0*(p+6))*yp(p)*yp(p);
     return 1.5*exp(3.0*(p+6))/(1.0 + 2.0*exp(3.0*(p + 6.0)) + exp(6.0*(p+6.0)));
