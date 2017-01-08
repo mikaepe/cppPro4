@@ -22,7 +22,6 @@ inline double f(Point p) {
 int main(int argc, char *argv[])
 {
 
-
   /*
   shared_ptr<xQuad> a = make_shared<xQuad>(-.25,0,.25,-1,1);
   shared_ptr<yLine> b = make_shared<yLine>(0,1,1);
@@ -43,15 +42,21 @@ int main(int argc, char *argv[])
   grid->grid_generation(50,20);
   cout << "x-size = " << grid->xsize() << endl;
   cout << "y-size = " << grid->ysize() << endl;
-  grid->writeFile();
+  grid->writeFile("gridOut.bin");
   Gfctn U = Gfctn(grid);
   U.setFunction(&f);
-  U.print();
+  //U.print();
 
   
   Gfctn DxU = U.D0x();                
   cout << "derivative: " << endl;
-  DxU.print();
+  //DxU.print();
+  DxU.writeFile("DxOut.bin");
+
+  Gfctn DyU = U.D0y();
+  cout << "derivative: " << endl;
+  //DyU.print();
+  DyU.writeFile("DyOut.bin");
 
   Gfctn DDxU = U.DD0x();
   cout << "2nd derivative: " << endl;
@@ -59,15 +64,18 @@ int main(int argc, char *argv[])
 
   Gfctn DDxU2 = U.DD0x2();
   cout << "2nd derivative (non const. h) " << endl;
-  DDxU2.print();
+  //DDxU2.print();
+  DDxU2.writeFile("DDxOut.bin");
 
   Gfctn DDyU2 = U.DD0y2();
   cout << "2nd derivative (non const. h, wrt y)" << endl;
-  DDyU2.print();
+ // DDyU2.print();
+  DDyU2.writeFile("DDyOut.bin");
   
   Gfctn Laplace = U.laplace();
   cout << "Laplace: " << endl;
-  Laplace.print();
+ // Laplace.print();
+  Laplace.writeFile("laplaceOut.bin");
 
   return 0; 	// Great Success
 }
