@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \usepackage{placeins}
 \usepackage{textcomp}
+\usepackage{epstopdf}
 %\usepackage{tikz}
 
 %%Settings	%%%	%%%	%%%	%%%	%%%	%%%	%%%
@@ -62,7 +63,7 @@ The domain class was taken directly from project 3, with the following modificat
     \texttt{writeFile(std::string fileName)} to be able to save the 
     different grid functions with different filenames.
   \item
-    \texttt{Point operator()(int i, int j) const} to access the $x$ and $y$ of the grid.
+    \texttt{Point operator()(int i, int j) const} to access the $x$- and $y$-values of the grid points.
 \end{itemize}
 The \texttt{Curvebase} class and its derived classes are almost identical to those used in 
 project 3. We have attempted to optimize the code slightly, for example by using inlining 
@@ -97,20 +98,27 @@ The following member functions are implemented.
     values to a binary file, \texttt{fileName.bin}.
 \end{itemize}
 In addition to those functions listed above, the class has functions to compute 
-the approximations to $\tfrac{\partial u}{\partial x}$, $\tfrac{\partial u}{\partial y}$,
-$\tfrac{\partial^2 u}{\partial x^2}$ and $\tfrac{\partial^2 u}{\partial y^2}$.
+the approximations to $\tfrac{\partial u}{\partial x}$ and $\tfrac{\partial u}{\partial y}$. These approximations uses the regular central difference given by
+$$\left( \frac{\partial f}{\partial \xi} \right)_{ij} \approx \frac{f_{i+1,j}-f_{i-1,j}}{2 \Delta \xi} $$ 
+$$\left(\frac{\partial f}{\partial \eta}\right)_{ij} \approx \frac{f_{i,j+1}-f_{i,j-1}}{2 \Delta \eta} $$ 
+to compute the derivatives of the grid function with respect to the reference coordinates as well as the derivatives of $x$ and $y$ with respect to the reference coordinates. For the border points we use one sided differences instead since we have no boundary conditions.
+
+We then get the the derivatives of the grid function $u$ with respect to $x$ and $y$ by using:
+$$\frac{\partial u}{\partial x} = \frac{1}{\det J} \left(\frac{\partial u}{\partial \xi} \frac{\partial x}{\partial \eta} - \frac{\partial u}{\partial \eta} \frac{\partial y}{\partial \xi}  \right)$$
+
+$$\frac{\partial u}{\partial y} = \frac{1}{\det J} \left(-\frac{\partial u}{\partial \xi} \frac{\partial x}{\partial \eta} + \frac{\partial u}{\partial \eta} \frac{\partial x}{\partial \xi}  \right)$$
+ 
+where 
+$$\det J = \frac{\partial x}{\partial \xi} \frac{\partial y}{\partial \eta} - \frac{\partial y}{\partial \xi} \frac{\partial x}{\partial \eta}   $$
+
 Finally the class has a function for computing the Laplacian of the grid function, 
-$\Delta u = \tfrac{\partial^2 u}{\partial x^2} + \tfrac{\partial^2 u}{\partial y^2}$.
+$\Delta u = \tfrac{\partial^2 u}{\partial x^2} + \tfrac{\partial^2 u}{\partial y^2}$. This function just applies the approximations of the derivatives to the derivatives $\tfrac{\partial u}{\partial x}$ and $\tfrac{\partial u}{\partial y}$ themselves to approximate the second derivatives. 
 These functions are
 \begin{itemize}
   \item
     \texttt{Gfctn D0x() const}
   \item
     \texttt{Gfctn D0y() const}
-  \item
-    \texttt{Gfctn DD0x() const}
-  \item
-    \texttt{Gfctn DD0y() const}
   \item
     \texttt{Gfctn laplace() const}
 \end{itemize}
