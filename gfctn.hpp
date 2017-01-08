@@ -33,7 +33,7 @@ class Gfctn
     void writeFile(std::string fileName) const; //write to binary file
     Gfctn D0x() const;			// du/dx
     Gfctn D0y() const;			// du/dy
-    Gfctn DD0x() const;			// d2u/dx2
+    //Gfctn DD0x() const;			// d2u/dx2
     Gfctn DD0x2() const;		// d2u/dx2
     Gfctn DD0y2() const;		// d2u/dy2
     Gfctn laplace() const;		// d2u/dx2 + d2u/dy2

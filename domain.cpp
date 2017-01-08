@@ -185,7 +185,6 @@ void Domain::writeFile(std::string fileName) const{
   fwrite(x_,sizeof(double),(n_+1)*(m_+1),fp);
   fwrite(y_,sizeof(double),(n_+1)*(m_+1),fp);
   fclose(fp);
-  delete[] fp;
 }
 
 // Function to check if the boundaries are connected (corners)
@@ -218,7 +217,7 @@ bool Domain::checkCorners() const {
 bool Domain::gridValid () const
 {
   if (m_ != 0 && checkCorners()) {
-    std::cout << "grid valid!" << std::endl;
+    //std::cout << "grid valid!" << std::endl;
     return true;
   } else {
     std::cout << "grid NOT valid!" << std::endl;

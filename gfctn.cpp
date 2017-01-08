@@ -95,7 +95,7 @@ Gfctn Gfctn::D0x() const
       for (int i = 1; i < grid->xsize(); i++) { //start at i=1, end at i=n-1
 	xminus = (*grid)(i-1,j).X();
 	xplus = (*grid)(i+1,j).X();
-	tmp.u(i,j) = (u.get(i-1,j)-u.get(i+1,j))/(xplus-xminus);
+	tmp.u(i,j) = (u.get(i+1,j)-u.get(i-1,j))/(xplus-xminus);
       }
     }
   } else {
@@ -117,7 +117,7 @@ Gfctn Gfctn::D0y() const
       for (int j = 1; j < grid->ysize(); j++) { //start at j=1, end at j=m-1
 	yminus = (*grid)(i,j-1).Y();
 	yplus = (*grid)(i,j+1).Y();
-	tmp.u(i,j) = (u.get(i,j-1)-u.get(i,j+1))/(yplus-yminus);
+	tmp.u(i,j) = (u.get(i,j+1)-u.get(i,j-1))/(yplus-yminus);
       }
     }
   } else {
@@ -127,6 +127,7 @@ Gfctn Gfctn::D0y() const
 }
 
 
+/*
 Gfctn Gfctn::DD0x() const
 {
   Gfctn tmp(grid);
@@ -144,7 +145,7 @@ Gfctn Gfctn::DD0x() const
   }
   return tmp;
 }
-
+*/
 
 
 /* Second derivative of u w.r.t. x.
